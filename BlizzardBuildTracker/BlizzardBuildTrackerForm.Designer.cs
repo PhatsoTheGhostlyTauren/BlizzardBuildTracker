@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BlizzardBuildTrackerForm));
             this.gbCVersionData = new System.Windows.Forms.GroupBox();
             this.cbGameCode = new System.Windows.Forms.ComboBox();
             this.gbCVData = new System.Windows.Forms.GroupBox();
@@ -553,6 +554,7 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1084, 468);
             this.Controls.Add(this.panelTracker);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BlizzardBuildTrackerForm";
             this.Text = "Blizzard Build Tracker";
             this.gbCVersionData.ResumeLayout(false);
