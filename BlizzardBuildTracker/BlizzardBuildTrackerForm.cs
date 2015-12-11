@@ -11,7 +11,7 @@ namespace BlizzardBuildTracker
         public BlizzardBuildTrackerForm()
         {
             InitializeComponent();
-            this.cbGameCode.Items.AddRange(new object[] { "wow", "wow_beta", "wowt", "bnt" });
+            this.cbGameCode.Items.AddRange(new object[] { "wow", "wow_beta", "wowt" });
             this.cbGameCode.SelectedIndex = 0;
 
 

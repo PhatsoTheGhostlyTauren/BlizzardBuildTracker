@@ -43,8 +43,6 @@
             this.lbCVBuildID = new System.Windows.Forms.Label();
             this.buttonLoadVersionsData = new System.Windows.Forms.Button();
             this.panelTracker = new System.Windows.Forms.Panel();
-            this.scLog = new System.Windows.Forms.SplitContainer();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.sCCDNConfig = new System.Windows.Forms.SplitContainer();
             this.tbCDNBuildEncodingSize = new System.Windows.Forms.TextBox();
             this.lbCDNBuildEncodingSize = new System.Windows.Forms.Label();
@@ -72,9 +70,6 @@
             this.gbCVersionData.SuspendLayout();
             this.gbCVData.SuspendLayout();
             this.panelTracker.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.scLog)).BeginInit();
-            this.scLog.Panel1.SuspendLayout();
-            this.scLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sCCDNConfig)).BeginInit();
             this.sCCDNConfig.Panel1.SuspendLayout();
             this.sCCDNConfig.Panel2.SuspendLayout();
@@ -243,14 +238,13 @@
             this.buttonLoadVersionsData.Name = "buttonLoadVersionsData";
             this.buttonLoadVersionsData.Size = new System.Drawing.Size(403, 119);
             this.buttonLoadVersionsData.TabIndex = 1;
-            this.buttonLoadVersionsData.Text = "Load Versions Data";
+            this.buttonLoadVersionsData.Text = "Load Game";
             this.buttonLoadVersionsData.UseCompatibleTextRendering = true;
             this.buttonLoadVersionsData.UseVisualStyleBackColor = true;
             this.buttonLoadVersionsData.Click += new System.EventHandler(this.buttonLoadVersionsData_Click);
             // 
             // panelTracker
             // 
-            this.panelTracker.Controls.Add(this.scLog);
             this.panelTracker.Controls.Add(this.sCCDNConfig);
             this.panelTracker.Controls.Add(this.gbCVersionData);
             this.panelTracker.Dock = System.Windows.Forms.DockStyle.Top;
@@ -260,28 +254,6 @@
             this.panelTracker.Padding = new System.Windows.Forms.Padding(5);
             this.panelTracker.Size = new System.Drawing.Size(1084, 677);
             this.panelTracker.TabIndex = 0;
-            // 
-            // scLog
-            // 
-            this.scLog.Dock = System.Windows.Forms.DockStyle.Top;
-            this.scLog.Location = new System.Drawing.Point(5, 464);
-            this.scLog.Name = "scLog";
-            // 
-            // scLog.Panel1
-            // 
-            this.scLog.Panel1.Controls.Add(this.textBox1);
-            this.scLog.Size = new System.Drawing.Size(1074, 144);
-            this.scLog.SplitterDistance = 882;
-            this.scLog.TabIndex = 3;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(882, 144);
-            this.textBox1.TabIndex = 0;
             // 
             // sCCDNConfig
             // 
@@ -579,7 +551,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(1084, 615);
+            this.ClientSize = new System.Drawing.Size(1084, 468);
             this.Controls.Add(this.panelTracker);
             this.Name = "BlizzardBuildTrackerForm";
             this.Text = "Blizzard Build Tracker";
@@ -587,10 +559,6 @@
             this.gbCVData.ResumeLayout(false);
             this.gbCVData.PerformLayout();
             this.panelTracker.ResumeLayout(false);
-            this.scLog.Panel1.ResumeLayout(false);
-            this.scLog.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.scLog)).EndInit();
-            this.scLog.ResumeLayout(false);
             this.sCCDNConfig.Panel1.ResumeLayout(false);
             this.sCCDNConfig.Panel1.PerformLayout();
             this.sCCDNConfig.Panel2.ResumeLayout(false);
@@ -617,8 +585,6 @@
         private System.Windows.Forms.GroupBox gbCVData;
         private System.Windows.Forms.ComboBox cbGameCode;
         private System.Windows.Forms.GroupBox gbCVersionData;
-        private System.Windows.Forms.SplitContainer scLog;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.SplitContainer sCCDNConfig;
         private System.Windows.Forms.ListBox listBoxCDNBuilds;
         private System.Windows.Forms.Label lbCDNBuildHash;
