@@ -11,6 +11,7 @@ namespace BlizzardBuildTracker
         public BlizzardBuildTrackerForm()
         {
             InitializeComponent();
+            this.Icon = BlizzardBuildTracker.Properties.Resources.phatso;
             this.cbGameCode.Items.AddRange(new object[] { "wow", "wow_beta", "wowt" });
             this.cbGameCode.SelectedIndex = 0;
 
