@@ -248,18 +248,19 @@
             // 
             this.panelTracker.Controls.Add(this.sCCDNConfig);
             this.panelTracker.Controls.Add(this.gbCVersionData);
-            this.panelTracker.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTracker.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTracker.Location = new System.Drawing.Point(0, 0);
             this.panelTracker.Margin = new System.Windows.Forms.Padding(0);
             this.panelTracker.Name = "panelTracker";
             this.panelTracker.Padding = new System.Windows.Forms.Padding(5);
-            this.panelTracker.Size = new System.Drawing.Size(1084, 677);
+            this.panelTracker.Size = new System.Drawing.Size(1084, 447);
             this.panelTracker.TabIndex = 0;
             // 
             // sCCDNConfig
             // 
             this.sCCDNConfig.Dock = System.Windows.Forms.DockStyle.Top;
             this.sCCDNConfig.Location = new System.Drawing.Point(5, 174);
+            this.sCCDNConfig.Margin = new System.Windows.Forms.Padding(0);
             this.sCCDNConfig.Name = "sCCDNConfig";
             // 
             // sCCDNConfig.Panel1
@@ -290,9 +291,8 @@
             // sCCDNConfig.Panel2
             // 
             this.sCCDNConfig.Panel2.Controls.Add(this.listBoxCDNBuilds);
-            this.sCCDNConfig.Panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.sCCDNConfig.Size = new System.Drawing.Size(1074, 290);
-            this.sCCDNConfig.SplitterDistance = 675;
+            this.sCCDNConfig.Size = new System.Drawing.Size(1074, 269);
+            this.sCCDNConfig.SplitterDistance = 666;
             this.sCCDNConfig.TabIndex = 2;
             // 
             // tbCDNBuildEncodingSize
@@ -541,9 +541,9 @@
             // 
             this.listBoxCDNBuilds.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxCDNBuilds.FormattingEnabled = true;
-            this.listBoxCDNBuilds.Location = new System.Drawing.Point(5, 5);
+            this.listBoxCDNBuilds.Location = new System.Drawing.Point(0, 0);
             this.listBoxCDNBuilds.Name = "listBoxCDNBuilds";
-            this.listBoxCDNBuilds.Size = new System.Drawing.Size(385, 280);
+            this.listBoxCDNBuilds.Size = new System.Drawing.Size(404, 269);
             this.listBoxCDNBuilds.TabIndex = 5;
             this.listBoxCDNBuilds.SelectedIndexChanged += new System.EventHandler(this.listBoxCDNBuilds_SelectedIndexChanged);
             // 
@@ -552,7 +552,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(1084, 468);
+            this.ClientSize = new System.Drawing.Size(1084, 447);
             this.Controls.Add(this.panelTracker);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BlizzardBuildTrackerForm";

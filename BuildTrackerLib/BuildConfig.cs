@@ -45,6 +45,12 @@ namespace BuildTrackerLib
             return BuildConfig_Data;
         }
         
+        public string getDisplayName
+        {
+            get {
+                return build_name;
+            }
+        }
         
 
     }

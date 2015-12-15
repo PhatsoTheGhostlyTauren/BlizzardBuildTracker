@@ -17,8 +17,10 @@ namespace BuildTrackerLib
         public string[] build_hashes;
         public Dictionary<string,string> _CDNconfdata;
         public Dictionary<string,BuildConfig> builds;
+        public Log log;
 
-        public CDNConfig(string _url, string _hash ) {
+        public CDNConfig(string _url, string _hash,Log _log) {
+            log = _log;
             _CDNconfdata = loadCDNConfig(_url, _hash);
             archives = Regex.Split(_CDNconfdata["archives"]," ");
             archive_group = _CDNconfdata["archive-group"];
@@ -35,15 +37,18 @@ namespace BuildTrackerLib
             string CDNConfig_string = Utility.getString(constructed_url);
             //Generate Line By Line Dictionary
             Dictionary<string, string> CDNConfig_Data = Utility.convertBlizzData(CDNConfig_string);
-
+           // this.log.WriteMessage("test", , "CDNConfig");                                                    //Logging
             return CDNConfig_Data;
         }
 
         private Dictionary<string,BuildConfig> loadBuilds(string _url, string[] _BuildConfigHashes) {
             Dictionary<string, BuildConfig> result = new Dictionary<string,BuildConfig>();
+            BuildConfig tmp;
             foreach (string hash in _BuildConfigHashes) {
-                result[hash] = new BuildConfig(_url, hash);
+                tmp = new BuildConfig(_url, hash);
+                result[tmp.build_uid+"."+tmp.build_name] = tmp;
             }
+            //this.log.WriteMessage("Succesfully gathered BuildConfigs for this CDN");
             return result;
         }
 

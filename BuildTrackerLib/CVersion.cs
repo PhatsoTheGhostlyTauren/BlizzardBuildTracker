@@ -14,10 +14,11 @@ namespace BuildTrackerLib
         public string buildName;
         public string buildID;
         public Dictionary<string, string> _vdata;
+        private Log log;
 
-
-        public ClientVersion(string _url)
+        public ClientVersion(string _url, Log _log)
         {
+            log = _log;
             _vdata = loadVersion(_url);
             region = _vdata["Region"];
             cdnConfigHash = _vdata["CDNConfig"];
@@ -32,10 +33,14 @@ namespace BuildTrackerLib
             string versions_string = Utility.getString(_url);
             //Generate Line By Line Associated Array
             List<Dictionary<string, string>> Version_Data = Utility.disentangleBlizzTable(versions_string);
+         //   this.log.WriteMessage("Version-Data succesfully gathered and decoded!");
+
 
             //Find appropriate Region
             string[] priorities = { "us", "xx", "eu", "kr", "tw", "cn", "sg" };
             Dictionary<string, string> vdata = Utility.priorityFind(priorities, Version_Data, "Region"); // returns a single row of the source data as an associative array
+            //this.log.WriteMessage("Appropriate Region Found!");
+
 
             return vdata;
         }

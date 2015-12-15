@@ -7,6 +7,7 @@ namespace BlizzardBuildTracker
     public partial class BlizzardBuildTrackerForm : Form
     {
         public BuildTrackerLib.Games.Game currentGame;
+        BuildTrackerLib.Log log;
 
         public BlizzardBuildTrackerForm()
         {
@@ -36,8 +37,8 @@ namespace BlizzardBuildTracker
                 this.tbCDNBuildRoot.Text = _bc.root;
                 this.tbCDNBuildInstall.Text = _bc.install;
                 this.tbCDNBuildDownload.Text = _bc.download;
-                this.tbCDNBuildEncoding.Text = string.Join("", _bc.encoding);
-                this.tbCDNBuildEncodingSize.Text = string.Join("", _bc.encoding_size);
+                this.tbCDNBuildEncoding.Text = string.Join(" | ", _bc.encoding);
+                this.tbCDNBuildEncodingSize.Text = string.Join(" | ", _bc.encoding_size);
                 this.tbCDNBuildPatch.Text = _bc.patch;
                 this.tbCDNBuildPatchConfig.Text = _bc.patch_config;
                 this.tbCDNBuildPatchSize.Text = _bc.patch_size;
@@ -49,7 +50,8 @@ namespace BlizzardBuildTracker
             this.listBoxCDNBuilds.DataSource = new BindingSource(_builds,null);
             this.listBoxCDNBuilds.DisplayMember = "Key";
             this.listBoxCDNBuilds.ValueMember = "Value";
-            this.listBoxCDNBuilds.SelectedIndex = 0;          
+            this.listBoxCDNBuilds.SelectedIndex = 0;
+            this.listBoxCDNBuilds_SelectedIndexChanged(listBoxCDNBuilds,new EventArgs());       
         }
 
         public void updateLog(string _msg) {
@@ -84,12 +86,20 @@ namespace BlizzardBuildTracker
         //Functionality Functions
         public void loadGame(string _gamecode) {
             //Load Game Object
-            currentGame = BuildTrackerLib.Games.loadGame(_gamecode);
+            log = new BuildTrackerLib.Log();
+            log.NewMessage += OnNewMessage;
+            currentGame = BuildTrackerLib.Games.loadGame(_gamecode,log);
             //Update the Client Version Display
             updateClientVersion(currentGame.client_version);
             loadCDNBuilds(currentGame.cdn_config.builds);
-
         }
+
+
+        public void OnNewMessage(object source, EventArgs args)
+        {
+            Console.WriteLine("Message:"+log.t[log.t.Count - 1]);
+        }
+
 
     }
 }
