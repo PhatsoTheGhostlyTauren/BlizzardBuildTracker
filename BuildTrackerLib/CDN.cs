@@ -26,7 +26,7 @@ namespace BuildTrackerLib
             //Download Version String from BNet
             string cdns_string = Utility.getString(_url);
             //Generate Line By Line Associated Array
-            List<Dictionary<string, string>> CDNS_Data = Utility.disentangleBlizzTable(cdns_string);
+            List<Dictionary<string, string>> CDNS_Data = Utility.deserializeBlizzTable(cdns_string);
 
             //Find appropriate Region
             string[] priorities = { "us", "xx", "eu", "kr", "tw", "cn", "sg" };

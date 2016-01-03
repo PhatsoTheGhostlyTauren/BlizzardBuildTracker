@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BlizzardBuildTracker
@@ -53,11 +54,7 @@ namespace BlizzardBuildTracker
             this.listBoxCDNBuilds.SelectedIndex = 0;
             this.listBoxCDNBuilds_SelectedIndexChanged(listBoxCDNBuilds,new EventArgs());       
         }
-
-        public void updateLog(string _msg) {
-
-
-        }
+           
 
         //Event-Functions
         private void buttonLoadVersionsData_Click(object sender, EventArgs e)
@@ -88,6 +85,7 @@ namespace BlizzardBuildTracker
             //Load Game Object
             log = new BuildTrackerLib.Log();
             log.NewMessage += OnNewMessage;
+            log.MessageUpdate += OnMessageUpdate;
             currentGame = BuildTrackerLib.Games.loadGame(_gamecode,log);
             //Update the Client Version Display
             updateClientVersion(currentGame.client_version);
@@ -95,11 +93,15 @@ namespace BlizzardBuildTracker
         }
 
 
-        public void OnNewMessage(object source, EventArgs args)
-        {
-            Console.WriteLine("Message:"+log.t[log.t.Count - 1]);
+        public void OnNewMessage(object source, EventArgs args) { 
+            this.rtbLog.AppendText("["+log.Messages.Last().Date_Send+"] ");
+            this.rtbLog.AppendText(log.Messages.Last().Msg + Environment.NewLine);            
         }
 
-
+        public void OnMessageUpdate(object source, EventArgs args) {
+            string[] lines = this.rtbLog.Lines;
+            lines[lines.Length -2] = "[" + log.Messages.Last().Date_Send + "] " + log.Messages.Last().Msg;
+            rtbLog.Lines = lines;
+        }
     }
 }

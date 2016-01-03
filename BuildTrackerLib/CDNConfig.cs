@@ -37,16 +37,20 @@ namespace BuildTrackerLib
             string CDNConfig_string = Utility.getString(constructed_url);
             //Generate Line By Line Dictionary
             Dictionary<string, string> CDNConfig_Data = Utility.convertBlizzData(CDNConfig_string);
-           // this.log.WriteMessage("test", , "CDNConfig");                                                    //Logging
+            log.WriteMessage("Succesfully loaded CDN-Config!", "CDNConfig:loadCDNConfig");                                                  //Logging
             return CDNConfig_Data;
         }
 
         private Dictionary<string,BuildConfig> loadBuilds(string _url, string[] _BuildConfigHashes) {
             Dictionary<string, BuildConfig> result = new Dictionary<string,BuildConfig>();
             BuildConfig tmp;
+            int msgindex = log.WriteProgress(String.Format("Loading Build-Config (0/{0})", _BuildConfigHashes.Length), "CDNConfig:loadBuilds");
+            int counter = 0;
             foreach (string hash in _BuildConfigHashes) {
                 tmp = new BuildConfig(_url, hash);
                 result[tmp.build_uid+"."+tmp.build_name] = tmp;
+                counter++;
+                log.updateProgress(String.Format("Loading Build-Config ({0}/{1})", counter, _BuildConfigHashes.Length),msgindex);
             }
             //this.log.WriteMessage("Succesfully gathered BuildConfigs for this CDN");
             return result;

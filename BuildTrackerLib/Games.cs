@@ -10,12 +10,12 @@ namespace BuildTrackerLib
         public static Game loadGame(string _GameCode,Log _log) {
             if (System.Enum.IsDefined(typeof(GameCodes), _GameCode))
             {
-                Console.WriteLine("Game {0} loaded!",_GameCode);
                 Game game = new Game(_GameCode,_log);
                 return game;
             }
             else {
-                throw new Exception("Not a legal GameCode!");
+                _log.WriteMessage(String.Format("Not a legit Gamecode: '{0}'", _GameCode), "Games:loadGame");
+                return null;
             }
         }
 
@@ -25,8 +25,11 @@ namespace BuildTrackerLib
             public ClientVersion client_version;
             public CDN cdn;
             public CDNConfig cdn_config;
+            public Log log;
 
             public Game(string _GameCode,Log _log) {
+                log = _log;
+                log.WriteMessage(String.Format("Loading up Game: '{0}'",_GameCode),"Game:Constructor");
                 bnet_url = string.Format("http://us.patch.battle.net:1119/{0}",_GameCode);
                 versions_url = string.Format("{0}/versions", bnet_url);
                 cdns_url = string.Format("{0}/cdns", bnet_url);
@@ -35,6 +38,8 @@ namespace BuildTrackerLib
                 cdn = new CDN(cdns_url);
                 dist_url = string.Format("http://dist.blizzard.com.edgesuite.net/{0}/config", cdn.path);
                 cdn_config = new CDNConfig(dist_url, client_version.cdnConfigHash, _log);
+                log.WriteMessage(String.Format("Finished loading Game: '{0}'", _GameCode), "Game:Constructor");
+
             }
 
 
