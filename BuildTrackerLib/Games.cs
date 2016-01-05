@@ -26,8 +26,10 @@ namespace BuildTrackerLib
             public CDN cdn;
             public CDNConfig cdn_config;
             public Log log;
+            public string gamecode;
 
             public Game(string _GameCode,Log _log) {
+                gamecode = _GameCode;
                 log = _log;
                 log.WriteMessage(String.Format("Loading up Game: '{0}'",_GameCode),"Game:Constructor");
                 bnet_url = string.Format("http://us.patch.battle.net:1119/{0}",_GameCode);
@@ -38,8 +40,7 @@ namespace BuildTrackerLib
                 cdn = new CDN(cdns_url);
                 dist_url = string.Format("http://dist.blizzard.com.edgesuite.net/{0}/config", cdn.path);
                 cdn_config = new CDNConfig(dist_url, client_version.cdnConfigHash, _log);
-                log.WriteMessage(String.Format("Finished loading Game: '{0}'", _GameCode), "Game:Constructor");
-
+                log.WriteSuccess(String.Format("Finished loading Game: '{0}'", _GameCode), "Game:Constructor");
             }
 
 

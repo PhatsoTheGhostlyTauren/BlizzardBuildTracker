@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BlizzardBuildTrackerForm));
-            this.sCCDNConfig = new System.Windows.Forms.SplitContainer();
+            this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.listBoxCDNBuilds = new System.Windows.Forms.ListBox();
             this.lbCDNBuildHash = new System.Windows.Forms.Label();
             this.tbCDNBuildHash = new System.Windows.Forms.TextBox();
@@ -53,8 +54,7 @@
             this.tbCDNBuildEncoding = new System.Windows.Forms.TextBox();
             this.lbCDNBuildEncodingSize = new System.Windows.Forms.Label();
             this.tbCDNBuildEncodingSize = new System.Windows.Forms.TextBox();
-            this.rtbLog = new System.Windows.Forms.RichTextBox();
-            this.scGameVersion = new System.Windows.Forms.SplitContainer();
+            this.sCCDNConfig = new System.Windows.Forms.SplitContainer();
             this.lbCVBuildID = new System.Windows.Forms.Label();
             this.tbCVBuildID = new System.Windows.Forms.TextBox();
             this.lbCVRegion = new System.Windows.Forms.Label();
@@ -67,7 +67,14 @@
             this.tbLog = new System.Windows.Forms.TextBox();
             this.buttonLoadVersionsData = new System.Windows.Forms.Button();
             this.cbGameCode = new System.Windows.Forms.ComboBox();
-            this.panelTracker = new System.Windows.Forms.Panel();
+            this.scGameVersion = new System.Windows.Forms.SplitContainer();
+            this.panelSpacer1 = new System.Windows.Forms.Panel();
+            this.pnLogControl = new System.Windows.Forms.Panel();
+            this.btnTrackerToggle = new System.Windows.Forms.Button();
+            this.numUDTrackerDelay = new System.Windows.Forms.NumericUpDown();
+            this.lbTrackerDelay = new System.Windows.Forms.Label();
+            this.TrackerTimer = new System.Windows.Forms.Timer(this.components);
+            this.panelSpacer2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.sCCDNConfig)).BeginInit();
             this.sCCDNConfig.Panel1.SuspendLayout();
             this.sCCDNConfig.Panel2.SuspendLayout();
@@ -76,49 +83,22 @@
             this.scGameVersion.Panel1.SuspendLayout();
             this.scGameVersion.Panel2.SuspendLayout();
             this.scGameVersion.SuspendLayout();
-            this.panelTracker.SuspendLayout();
+            this.pnLogControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDTrackerDelay)).BeginInit();
             this.SuspendLayout();
             // 
-            // sCCDNConfig
+            // rtbLog
             // 
-            this.sCCDNConfig.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.sCCDNConfig.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.sCCDNConfig.Location = new System.Drawing.Point(5, 137);
-            this.sCCDNConfig.Margin = new System.Windows.Forms.Padding(0);
-            this.sCCDNConfig.Name = "sCCDNConfig";
-            // 
-            // sCCDNConfig.Panel1
-            // 
-            this.sCCDNConfig.Panel1.BackColor = System.Drawing.Color.Silver;
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildEncodingSize);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildEncodingSize);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildEncoding);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildEncoding);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildPatchConfig);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildPatchConfig);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildPatch);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildPatch);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildPatchSize);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildPatchSize);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildDownload);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildDownload);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildInstall);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildInstall);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildRoot);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildRoot);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildName);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildName);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildUID);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildUID);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildHash);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildHash);
-            // 
-            // sCCDNConfig.Panel2
-            // 
-            this.sCCDNConfig.Panel2.Controls.Add(this.listBoxCDNBuilds);
-            this.sCCDNConfig.Size = new System.Drawing.Size(1090, 270);
-            this.sCCDNConfig.SplitterDistance = 620;
-            this.sCCDNConfig.TabIndex = 2;
+            this.rtbLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbLog.Location = new System.Drawing.Point(5, 494);
+            this.rtbLog.Margin = new System.Windows.Forms.Padding(0);
+            this.rtbLog.Name = "rtbLog";
+            this.rtbLog.ReadOnly = true;
+            this.rtbLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.rtbLog.Size = new System.Drawing.Size(1090, 201);
+            this.rtbLog.TabIndex = 6;
+            this.rtbLog.Text = "";
             // 
             // listBoxCDNBuilds
             // 
@@ -128,7 +108,7 @@
             this.listBoxCDNBuilds.Location = new System.Drawing.Point(0, 0);
             this.listBoxCDNBuilds.Margin = new System.Windows.Forms.Padding(0);
             this.listBoxCDNBuilds.Name = "listBoxCDNBuilds";
-            this.listBoxCDNBuilds.Size = new System.Drawing.Size(464, 268);
+            this.listBoxCDNBuilds.Size = new System.Drawing.Size(476, 272);
             this.listBoxCDNBuilds.TabIndex = 5;
             this.listBoxCDNBuilds.SelectedIndexChanged += new System.EventHandler(this.listBoxCDNBuilds_SelectedIndexChanged);
             // 
@@ -363,47 +343,48 @@
             this.tbCDNBuildEncodingSize.Size = new System.Drawing.Size(461, 20);
             this.tbCDNBuildEncodingSize.TabIndex = 47;
             // 
-            // rtbLog
+            // sCCDNConfig
             // 
-            this.rtbLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtbLog.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.rtbLog.Location = new System.Drawing.Point(5, 425);
-            this.rtbLog.Margin = new System.Windows.Forms.Padding(0);
-            this.rtbLog.Name = "rtbLog";
-            this.rtbLog.ReadOnly = true;
-            this.rtbLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtbLog.Size = new System.Drawing.Size(1090, 270);
-            this.rtbLog.TabIndex = 3;
-            this.rtbLog.Text = "";
+            this.sCCDNConfig.Dock = System.Windows.Forms.DockStyle.Top;
+            this.sCCDNConfig.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.sCCDNConfig.IsSplitterFixed = true;
+            this.sCCDNConfig.Location = new System.Drawing.Point(5, 161);
+            this.sCCDNConfig.Margin = new System.Windows.Forms.Padding(0);
+            this.sCCDNConfig.Name = "sCCDNConfig";
             // 
-            // scGameVersion
+            // sCCDNConfig.Panel1
             // 
-            this.scGameVersion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.scGameVersion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.scGameVersion.Location = new System.Drawing.Point(5, 5);
-            this.scGameVersion.Name = "scGameVersion";
+            this.sCCDNConfig.Panel1.BackColor = System.Drawing.Color.Silver;
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildEncodingSize);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildEncodingSize);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildEncoding);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildEncoding);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildPatchConfig);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildPatchConfig);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildPatch);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildPatch);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildPatchSize);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildPatchSize);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildDownload);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildDownload);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildInstall);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildInstall);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildRoot);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildRoot);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildName);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildName);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildUID);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildUID);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildHash);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildHash);
             // 
-            // scGameVersion.Panel1
+            // sCCDNConfig.Panel2
             // 
-            this.scGameVersion.Panel1.Controls.Add(this.cbGameCode);
-            this.scGameVersion.Panel1.Controls.Add(this.buttonLoadVersionsData);
-            // 
-            // scGameVersion.Panel2
-            // 
-            this.scGameVersion.Panel2.BackColor = System.Drawing.Color.Silver;
-            this.scGameVersion.Panel2.Controls.Add(this.tbLog);
-            this.scGameVersion.Panel2.Controls.Add(this.lbCVCDNConfig);
-            this.scGameVersion.Panel2.Controls.Add(this.tbCVBuildConfig);
-            this.scGameVersion.Panel2.Controls.Add(this.lbCVBuildConfig);
-            this.scGameVersion.Panel2.Controls.Add(this.tbCVBuildName);
-            this.scGameVersion.Panel2.Controls.Add(this.lbCVBuildName);
-            this.scGameVersion.Panel2.Controls.Add(this.tbCVRegion);
-            this.scGameVersion.Panel2.Controls.Add(this.lbCVRegion);
-            this.scGameVersion.Panel2.Controls.Add(this.tbCVBuildID);
-            this.scGameVersion.Panel2.Controls.Add(this.lbCVBuildID);
-            this.scGameVersion.Size = new System.Drawing.Size(1090, 129);
-            this.scGameVersion.SplitterDistance = 482;
-            this.scGameVersion.TabIndex = 4;
+            this.sCCDNConfig.Panel2.Controls.Add(this.listBoxCDNBuilds);
+            this.sCCDNConfig.Size = new System.Drawing.Size(1090, 272);
+            this.sCCDNConfig.SplitterDistance = 604;
+            this.sCCDNConfig.SplitterWidth = 10;
+            this.sCCDNConfig.TabIndex = 9;
             // 
             // lbCVBuildID
             // 
@@ -515,10 +496,10 @@
             this.buttonLoadVersionsData.AutoEllipsis = true;
             this.buttonLoadVersionsData.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.buttonLoadVersionsData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLoadVersionsData.Location = new System.Drawing.Point(0, 21);
+            this.buttonLoadVersionsData.Location = new System.Drawing.Point(0, 23);
             this.buttonLoadVersionsData.Margin = new System.Windows.Forms.Padding(0);
             this.buttonLoadVersionsData.Name = "buttonLoadVersionsData";
-            this.buttonLoadVersionsData.Size = new System.Drawing.Size(480, 106);
+            this.buttonLoadVersionsData.Size = new System.Drawing.Size(482, 106);
             this.buttonLoadVersionsData.TabIndex = 10;
             this.buttonLoadVersionsData.Text = "Load Game";
             this.buttonLoadVersionsData.UseCompatibleTextRendering = true;
@@ -532,22 +513,128 @@
             this.cbGameCode.FormattingEnabled = true;
             this.cbGameCode.Location = new System.Drawing.Point(0, 0);
             this.cbGameCode.Name = "cbGameCode";
-            this.cbGameCode.Size = new System.Drawing.Size(480, 21);
+            this.cbGameCode.Size = new System.Drawing.Size(482, 21);
             this.cbGameCode.Sorted = true;
             this.cbGameCode.TabIndex = 9;
             // 
-            // panelTracker
+            // scGameVersion
             // 
-            this.panelTracker.Controls.Add(this.scGameVersion);
-            this.panelTracker.Controls.Add(this.rtbLog);
-            this.panelTracker.Controls.Add(this.sCCDNConfig);
-            this.panelTracker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTracker.Location = new System.Drawing.Point(0, 0);
-            this.panelTracker.Margin = new System.Windows.Forms.Padding(0);
-            this.panelTracker.Name = "panelTracker";
-            this.panelTracker.Padding = new System.Windows.Forms.Padding(5);
-            this.panelTracker.Size = new System.Drawing.Size(1100, 700);
-            this.panelTracker.TabIndex = 0;
+            this.scGameVersion.BackColor = System.Drawing.Color.Silver;
+            this.scGameVersion.Dock = System.Windows.Forms.DockStyle.Top;
+            this.scGameVersion.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.scGameVersion.IsSplitterFixed = true;
+            this.scGameVersion.Location = new System.Drawing.Point(5, 5);
+            this.scGameVersion.Margin = new System.Windows.Forms.Padding(10);
+            this.scGameVersion.Name = "scGameVersion";
+            // 
+            // scGameVersion.Panel1
+            // 
+            this.scGameVersion.Panel1.Controls.Add(this.cbGameCode);
+            this.scGameVersion.Panel1.Controls.Add(this.buttonLoadVersionsData);
+            // 
+            // scGameVersion.Panel2
+            // 
+            this.scGameVersion.Panel2.BackColor = System.Drawing.Color.Silver;
+            this.scGameVersion.Panel2.Controls.Add(this.tbLog);
+            this.scGameVersion.Panel2.Controls.Add(this.lbCVCDNConfig);
+            this.scGameVersion.Panel2.Controls.Add(this.tbCVBuildConfig);
+            this.scGameVersion.Panel2.Controls.Add(this.lbCVBuildConfig);
+            this.scGameVersion.Panel2.Controls.Add(this.tbCVBuildName);
+            this.scGameVersion.Panel2.Controls.Add(this.lbCVBuildName);
+            this.scGameVersion.Panel2.Controls.Add(this.tbCVRegion);
+            this.scGameVersion.Panel2.Controls.Add(this.lbCVRegion);
+            this.scGameVersion.Panel2.Controls.Add(this.tbCVBuildID);
+            this.scGameVersion.Panel2.Controls.Add(this.lbCVBuildID);
+            this.scGameVersion.Size = new System.Drawing.Size(1090, 129);
+            this.scGameVersion.SplitterDistance = 482;
+            this.scGameVersion.TabIndex = 7;
+            // 
+            // panelSpacer1
+            // 
+            this.panelSpacer1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelSpacer1.Location = new System.Drawing.Point(5, 134);
+            this.panelSpacer1.Name = "panelSpacer1";
+            this.panelSpacer1.Size = new System.Drawing.Size(1090, 27);
+            this.panelSpacer1.TabIndex = 8;
+            // 
+            // pnLogControl
+            // 
+            this.pnLogControl.BackColor = System.Drawing.Color.Silver;
+            this.pnLogControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnLogControl.Controls.Add(this.btnTrackerToggle);
+            this.pnLogControl.Controls.Add(this.numUDTrackerDelay);
+            this.pnLogControl.Controls.Add(this.lbTrackerDelay);
+            this.pnLogControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnLogControl.Location = new System.Drawing.Point(5, 469);
+            this.pnLogControl.Margin = new System.Windows.Forms.Padding(0);
+            this.pnLogControl.Name = "pnLogControl";
+            this.pnLogControl.Size = new System.Drawing.Size(1090, 25);
+            this.pnLogControl.TabIndex = 10;
+            // 
+            // btnTrackerToggle
+            // 
+            this.btnTrackerToggle.Location = new System.Drawing.Point(238, 0);
+            this.btnTrackerToggle.Margin = new System.Windows.Forms.Padding(0);
+            this.btnTrackerToggle.Name = "btnTrackerToggle";
+            this.btnTrackerToggle.Size = new System.Drawing.Size(120, 23);
+            this.btnTrackerToggle.TabIndex = 8;
+            this.btnTrackerToggle.Text = "Start Tracking";
+            this.btnTrackerToggle.UseVisualStyleBackColor = true;
+            this.btnTrackerToggle.Click += new System.EventHandler(this.btnTrackerToggle_Click);
+            // 
+            // numUDTrackerDelay
+            // 
+            this.numUDTrackerDelay.Enabled = false;
+            this.numUDTrackerDelay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numUDTrackerDelay.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numUDTrackerDelay.Location = new System.Drawing.Point(114, 1);
+            this.numUDTrackerDelay.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numUDTrackerDelay.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numUDTrackerDelay.Name = "numUDTrackerDelay";
+            this.numUDTrackerDelay.Size = new System.Drawing.Size(120, 21);
+            this.numUDTrackerDelay.TabIndex = 7;
+            this.numUDTrackerDelay.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.numUDTrackerDelay.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.numUDTrackerDelay.ValueChanged += new System.EventHandler(this.numUDTrackerDelay_ValueChanged);
+            // 
+            // lbTrackerDelay
+            // 
+            this.lbTrackerDelay.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbTrackerDelay.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTrackerDelay.Location = new System.Drawing.Point(3, 1);
+            this.lbTrackerDelay.Name = "lbTrackerDelay";
+            this.lbTrackerDelay.Size = new System.Drawing.Size(114, 21);
+            this.lbTrackerDelay.TabIndex = 6;
+            this.lbTrackerDelay.Text = "TrackerDelay:";
+            // 
+            // TrackerTimer
+            // 
+            this.TrackerTimer.Interval = 99999;
+            this.TrackerTimer.Tick += new System.EventHandler(this.track);
+            // 
+            // panelSpacer2
+            // 
+            this.panelSpacer2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelSpacer2.Location = new System.Drawing.Point(5, 433);
+            this.panelSpacer2.Name = "panelSpacer2";
+            this.panelSpacer2.Size = new System.Drawing.Size(1090, 36);
+            this.panelSpacer2.TabIndex = 11;
             // 
             // BlizzardBuildTrackerForm
             // 
@@ -555,9 +642,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1100, 700);
-            this.Controls.Add(this.panelTracker);
+            this.Controls.Add(this.rtbLog);
+            this.Controls.Add(this.pnLogControl);
+            this.Controls.Add(this.panelSpacer2);
+            this.Controls.Add(this.sCCDNConfig);
+            this.Controls.Add(this.panelSpacer1);
+            this.Controls.Add(this.scGameVersion);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BlizzardBuildTrackerForm";
+            this.Padding = new System.Windows.Forms.Padding(5);
             this.Text = "Blizzard Build Tracker";
             this.sCCDNConfig.Panel1.ResumeLayout(false);
             this.sCCDNConfig.Panel1.PerformLayout();
@@ -569,52 +662,59 @@
             this.scGameVersion.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scGameVersion)).EndInit();
             this.scGameVersion.ResumeLayout(false);
-            this.panelTracker.ResumeLayout(false);
+            this.pnLogControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numUDTrackerDelay)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panelTracker;
-        private System.Windows.Forms.Label lbCVBuildID;
-        private System.Windows.Forms.TextBox tbCVBuildID;
-        private System.Windows.Forms.Label lbCVRegion;
-        private System.Windows.Forms.TextBox tbCVRegion;
-        private System.Windows.Forms.Label lbCVBuildName;
-        private System.Windows.Forms.TextBox tbCVBuildName;
-        private System.Windows.Forms.Label lbCVBuildConfig;
-        private System.Windows.Forms.TextBox tbCVBuildConfig;
-        private System.Windows.Forms.Label lbCVCDNConfig;
-        private System.Windows.Forms.TextBox tbLog;
-        private System.Windows.Forms.Button buttonLoadVersionsData;
-        private System.Windows.Forms.ComboBox cbGameCode;
         private System.Windows.Forms.SplitContainer scGameVersion;
-        private System.Windows.Forms.RichTextBox rtbLog;
-        private System.Windows.Forms.ListBox listBoxCDNBuilds;
-        private System.Windows.Forms.Label lbCDNBuildHash;
-        private System.Windows.Forms.TextBox tbCDNBuildHash;
-        private System.Windows.Forms.Label lbCDNBuildUID;
-        private System.Windows.Forms.TextBox tbCDNBuildUID;
-        private System.Windows.Forms.Label lbCDNBuildName;
-        private System.Windows.Forms.TextBox tbCDNBuildName;
-        private System.Windows.Forms.Label lbCDNBuildRoot;
-        private System.Windows.Forms.TextBox tbCDNBuildRoot;
-        private System.Windows.Forms.Label lbCDNBuildInstall;
-        private System.Windows.Forms.TextBox tbCDNBuildInstall;
-        private System.Windows.Forms.Label lbCDNBuildDownload;
-        private System.Windows.Forms.TextBox tbCDNBuildDownload;
-        private System.Windows.Forms.Label lbCDNBuildPatchSize;
-        private System.Windows.Forms.TextBox tbCDNBuildPatchSize;
-        private System.Windows.Forms.Label lbCDNBuildPatch;
-        private System.Windows.Forms.TextBox tbCDNBuildPatch;
-        private System.Windows.Forms.Label lbCDNBuildPatchConfig;
-        private System.Windows.Forms.TextBox tbCDNBuildPatchConfig;
-        private System.Windows.Forms.Label lbCDNBuildEncoding;
-        private System.Windows.Forms.TextBox tbCDNBuildEncoding;
-        private System.Windows.Forms.Label lbCDNBuildEncodingSize;
-        private System.Windows.Forms.TextBox tbCDNBuildEncodingSize;
+        private System.Windows.Forms.ComboBox cbGameCode;
+        private System.Windows.Forms.Button buttonLoadVersionsData;
+        private System.Windows.Forms.TextBox tbLog;
+        private System.Windows.Forms.Label lbCVCDNConfig;
+        private System.Windows.Forms.TextBox tbCVBuildConfig;
+        private System.Windows.Forms.Label lbCVBuildConfig;
+        private System.Windows.Forms.TextBox tbCVBuildName;
+        private System.Windows.Forms.Label lbCVBuildName;
+        private System.Windows.Forms.TextBox tbCVRegion;
+        private System.Windows.Forms.Label lbCVRegion;
+        private System.Windows.Forms.TextBox tbCVBuildID;
+        private System.Windows.Forms.Label lbCVBuildID;
         private System.Windows.Forms.SplitContainer sCCDNConfig;
+        private System.Windows.Forms.TextBox tbCDNBuildEncodingSize;
+        private System.Windows.Forms.Label lbCDNBuildEncodingSize;
+        private System.Windows.Forms.TextBox tbCDNBuildEncoding;
+        private System.Windows.Forms.Label lbCDNBuildEncoding;
+        private System.Windows.Forms.TextBox tbCDNBuildPatchConfig;
+        private System.Windows.Forms.Label lbCDNBuildPatchConfig;
+        private System.Windows.Forms.TextBox tbCDNBuildPatch;
+        private System.Windows.Forms.Label lbCDNBuildPatch;
+        private System.Windows.Forms.TextBox tbCDNBuildPatchSize;
+        private System.Windows.Forms.Label lbCDNBuildPatchSize;
+        private System.Windows.Forms.TextBox tbCDNBuildDownload;
+        private System.Windows.Forms.Label lbCDNBuildDownload;
+        private System.Windows.Forms.TextBox tbCDNBuildInstall;
+        private System.Windows.Forms.Label lbCDNBuildInstall;
+        private System.Windows.Forms.TextBox tbCDNBuildRoot;
+        private System.Windows.Forms.Label lbCDNBuildRoot;
+        private System.Windows.Forms.TextBox tbCDNBuildName;
+        private System.Windows.Forms.Label lbCDNBuildName;
+        private System.Windows.Forms.TextBox tbCDNBuildUID;
+        private System.Windows.Forms.Label lbCDNBuildUID;
+        private System.Windows.Forms.TextBox tbCDNBuildHash;
+        private System.Windows.Forms.Label lbCDNBuildHash;
+        private System.Windows.Forms.ListBox listBoxCDNBuilds;
+        private System.Windows.Forms.RichTextBox rtbLog;
+        private System.Windows.Forms.Panel panelSpacer1;
+        private System.Windows.Forms.Panel pnLogControl;
+        private System.Windows.Forms.Timer TrackerTimer;
+        private System.Windows.Forms.Label lbTrackerDelay;
+        private System.Windows.Forms.NumericUpDown numUDTrackerDelay;
+        private System.Windows.Forms.Button btnTrackerToggle;
+        private System.Windows.Forms.Panel panelSpacer2;
     }
 }
 

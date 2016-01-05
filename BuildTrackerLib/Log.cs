@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Diagnostics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuildTrackerLib
 {
@@ -21,15 +18,9 @@ namespace BuildTrackerLib
             addMessage(new Message(_msg, "#ff0000", _source));
         }
 
-        public int WriteProgress(string _msg, string _source) {
-           return addMessage(new Message(_msg, "#000000", _source));
-        }
-
-
-
-        public void updateProgress(string _msg, int _index) {
-            this.Messages[_index].Msg = _msg;
-            OnMessageUpdate();
+        public void WriteSuccess(string _msg, string _source)
+        {
+            addMessage(new Message(_msg, "#008000", _source));
         }
 
         public int addMessage(Message _msg) {
@@ -43,18 +34,11 @@ namespace BuildTrackerLib
         public delegate void LogEventHandler(object source, EventArgs args);
         //Register NewMessage Event
         public event LogEventHandler NewMessage;
-        public event LogEventHandler MessageUpdate;
 
         //Alert Event-Subscribers
         protected virtual void OnNewMessage() {
             if (NewMessage != null)
                 NewMessage(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnMessageUpdate() {
-            Console.WriteLine("OnMessageUpdate() fired");
-            if (MessageUpdate != null)
-                MessageUpdate(this, EventArgs.Empty);
         }
 
 

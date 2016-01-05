@@ -10,6 +10,7 @@ namespace BuildTrackerLib
     public class BuildConfig
     {
         public Dictionary<string, string> _Buildconfdata;
+        public string content_hash;
         public string config_hash;
         public string root, download, install;
         public string[] encoding, encoding_size;
@@ -39,6 +40,7 @@ namespace BuildTrackerLib
             //Download BuildConfig String from BNet
             string constructed_url = Utility.getHashUrl(_url, _hash);
             string BuildConfig_string = Utility.getString(constructed_url);
+            this.content_hash = Utility.CreateMD5(BuildConfig_string);
             //Generate Line By Line Dictionary
             Dictionary<string, string> BuildConfig_Data = Utility.convertBlizzData(BuildConfig_string);
 

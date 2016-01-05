@@ -5,7 +5,6 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace BuildTrackerLib
 {
@@ -14,19 +13,30 @@ namespace BuildTrackerLib
 
         public static string getString(string _url)
         {
-
             using (WebClient client = new WebClient())
             {
-                return client.DownloadString(_url);
+                string data = client.DownloadString(_url);
+                //Console.WriteLine(_url + Environment.NewLine + client.ResponseHeaders);
+                return data;
             }
+        }
 
+        public static string getSize(string _url) {
+            Dictionary<string, string> Headers = GetHTTPResponseHeaders(_url);
+
+            return Headers["age"];
+        }
+
+        private static Dictionary<string, string> GetHTTPResponseHeaders(string _url)
+        {
+            throw new NotImplementedException();
         }
 
         public static string CreateMD5(string input)
         {
             // Use input string to calculate MD5 hash
-            MD5 md5 = System.Security.Cryptography.MD5.Create();
-            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+            MD5 md5 = MD5.Create();
+            byte[] inputBytes = Encoding.ASCII.GetBytes(input);
             byte[] hashBytes = md5.ComputeHash(inputBytes);
 
             // Convert the byte array to hexadecimal string
@@ -40,7 +50,7 @@ namespace BuildTrackerLib
 
         public static List<Dictionary<string, string>> deserializeBlizzTable(string _data)
         {
-            _data = _data.TrimEnd(); //Remove Trailing Spaces and Lines
+            _data = _data.TrimEnd(); //Remove Trailing Spaces and Lines//
             string[] rows = Regex.Split(_data, "\n");
             string[] headrow = rows[0].Split('|');
             int colcount = 0;
@@ -112,6 +122,16 @@ namespace BuildTrackerLib
             }
 
             return result;
+        }
+
+        //Outputs the differing Elements of two String Arrays
+        public static string[] getDifference(string[] _a, string[] _b) {
+            IEnumerable<string> diffa = _a.Except(_b);
+            IEnumerable<string> diffb = _b.Except(_a);
+            string[] diff = diffa.Concat(diffb).ToArray();
+
+            Console.WriteLine(diff.ToString());
+            return diff;
         }
 
 
