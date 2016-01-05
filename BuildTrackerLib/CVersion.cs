@@ -42,9 +42,9 @@ namespace BuildTrackerLib
 
             //Find appropriate Region
             string[] priorities = { "us", "xx", "eu", "kr", "tw", "cn", "sg" };
-            Dictionary<string, string> vdata = Utility.priorityFind(priorities, Version_Data, "Region"); // returns a single row of the source data as an associative array
+            Dictionary<string, string> vdata = Utility.priorityFind(priorities, Version_Data, "Region",false); // returns a single row of the source data as an associative array
 
-
+            Console.WriteLine("test");
 
             return vdata;
         }
@@ -56,7 +56,7 @@ namespace BuildTrackerLib
 
 
             string[] priorities = { "us", "xx", "eu", "kr", "tw", "cn", "sg" };
-            this.version_data = Utility.priorityFind(priorities, Version_Data, "Region");
+            this.version_data = Utility.priorityFind(priorities, Version_Data, "Region",false);
 
             this.region = version_data["Region"];
             this.cdnConfigHash = version_data["CDNConfig"];

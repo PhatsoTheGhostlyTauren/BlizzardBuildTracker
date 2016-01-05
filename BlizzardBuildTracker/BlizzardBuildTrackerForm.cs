@@ -20,7 +20,7 @@ namespace BlizzardBuildTracker
         {
             InitializeComponent();
             this.Icon = BlizzardBuildTracker.Properties.Resources.phatso;
-            this.cbGameCode.Items.AddRange(new object[] { "wow", "wow_beta", "wowt" });
+            this.cbGameCode.Items.AddRange(new object[] {"s2", "s2b", "d3", "d3cn", "d3t", "hero", "herot", "hsb", "pro", "agent","wow", "wowt","wow_beta" });
             this.cbGameCode.SelectedIndex = 0;
             this.numUDTrackerDelay.Value = TrackerDelay / 1000;
             this.FelReaver = new SoundPlayer(BlizzardBuildTracker.Properties.Resources.FelReaver);
@@ -205,12 +205,16 @@ namespace BlizzardBuildTracker
         //log-"NewMessage"-Subscriber Routine
         public void OnNewMessage(object source, EventArgs args)
         {
-            this.rtbLog.AppendText("[" + log.Messages.Last().Date_Send + "] ");
-            this.rtbLog.AppendText(log.Messages.Last().Msg + Environment.NewLine);
+            string line = "[" + log.Messages.Last().Date_Send + "] " + log.Messages.Last().Msg + Environment.NewLine;
+            this.rtbLog.AppendText(line);
 
             Color color = ColorTranslator.FromHtml(this.log.Messages.Last().color);
             this.rtbLog.Find(log.Messages.Last().Msg);
             this.rtbLog.SelectionColor = color;
+
+            //Scroll to bottom
+            this.rtbLog.SelectionStart = this.rtbLog.TextLength;
+            this.rtbLog.ScrollToCaret();
         }
 
         private void numUDTrackerDelay_ValueChanged(object sender, EventArgs e)

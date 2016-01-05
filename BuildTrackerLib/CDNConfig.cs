@@ -18,6 +18,7 @@ namespace BuildTrackerLib
         public string patch_archive_group;
         public string[] build_hashes;
         public Dictionary<string, BuildConfig> builds;
+        Dictionary<string, string> CDNConfData;
         public Log log;
 
         public CDNConfig(string _url, string _hash, Log _log) {
@@ -26,20 +27,24 @@ namespace BuildTrackerLib
             this.config_url = Utility.getHashUrl(_url, _hash);
             this.log = _log;
 
+            this.CDNConfData = loadCDNConfig();
+            parseCDNConfigDictionary(this.CDNConfData);
 
-            parseCDNConfigDictionary(loadCDNConfig());
             this.builds = loadBuilds(base_url, build_hashes);
         }
         
         
         public void parseCDNConfigDictionary(Dictionary<string,string> _CDNconfdata) {
-            this.archives = Regex.Split(_CDNconfdata["archives"], " ");
-            this.archive_group = _CDNconfdata["archive-group"];
-            this.patch_archives = Regex.Split(_CDNconfdata["patch-archives"], " ");
-            this.patch_archive_group = _CDNconfdata["patch-archive-group"];
-            this.build_hashes = Regex.Split(_CDNconfdata["builds"], " ");
+            this.archives = Regex.Split(ifKeyExists("archives"), " ");
+            this.archive_group = ifKeyExists("archive-group");
+            this.patch_archives = Regex.Split(ifKeyExists("patch-archives"), " ");
+            this.patch_archive_group = ifKeyExists("patch-archive-group");
+            this.build_hashes = Regex.Split(ifKeyExists("builds"), " ");
         }
 
+        private string ifKeyExists(string _key) {
+            return (CDNConfData.ContainsKey(_key)) ? CDNConfData[_key] : "Not found!";
+        }
 
         //Download CDNConfig to String and Convert it to Dictionary<string,string>
         private Dictionary<string, string> loadCDNConfig()

@@ -90,6 +90,7 @@
             // rtbLog
             // 
             this.rtbLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbLog.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.rtbLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbLog.Location = new System.Drawing.Point(5, 494);
             this.rtbLog.Margin = new System.Windows.Forms.Padding(0);
@@ -411,11 +412,11 @@
             // 
             this.lbCVRegion.AutoSize = true;
             this.lbCVRegion.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCVRegion.Location = new System.Drawing.Point(296, 3);
+            this.lbCVRegion.Location = new System.Drawing.Point(319, 3);
             this.lbCVRegion.Name = "lbCVRegion";
-            this.lbCVRegion.Size = new System.Drawing.Size(97, 22);
+            this.lbCVRegion.Size = new System.Drawing.Size(63, 22);
             this.lbCVRegion.TabIndex = 16;
-            this.lbCVRegion.Text = "Build-Name:";
+            this.lbCVRegion.Text = "Region:";
             // 
             // tbCVRegion
             // 
@@ -510,7 +511,7 @@
             // 
             this.cbGameCode.Dock = System.Windows.Forms.DockStyle.Top;
             this.cbGameCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbGameCode.FormattingEnabled = true;
+            this.cbGameCode.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbGameCode.Location = new System.Drawing.Point(0, 0);
             this.cbGameCode.Name = "cbGameCode";
             this.cbGameCode.Size = new System.Drawing.Size(482, 21);
@@ -573,7 +574,7 @@
             // 
             // btnTrackerToggle
             // 
-            this.btnTrackerToggle.Location = new System.Drawing.Point(238, 0);
+            this.btnTrackerToggle.Location = new System.Drawing.Point(256, 0);
             this.btnTrackerToggle.Margin = new System.Windows.Forms.Padding(0);
             this.btnTrackerToggle.Name = "btnTrackerToggle";
             this.btnTrackerToggle.Size = new System.Drawing.Size(120, 23);
@@ -591,7 +592,7 @@
             0,
             0,
             0});
-            this.numUDTrackerDelay.Location = new System.Drawing.Point(114, 1);
+            this.numUDTrackerDelay.Location = new System.Drawing.Point(127, 1);
             this.numUDTrackerDelay.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -619,9 +620,9 @@
             this.lbTrackerDelay.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTrackerDelay.Location = new System.Drawing.Point(3, 1);
             this.lbTrackerDelay.Name = "lbTrackerDelay";
-            this.lbTrackerDelay.Size = new System.Drawing.Size(114, 21);
+            this.lbTrackerDelay.Size = new System.Drawing.Size(139, 21);
             this.lbTrackerDelay.TabIndex = 6;
-            this.lbTrackerDelay.Text = "TrackerDelay:";
+            this.lbTrackerDelay.Text = "Tracker-Interval:";
             // 
             // TrackerTimer
             // 

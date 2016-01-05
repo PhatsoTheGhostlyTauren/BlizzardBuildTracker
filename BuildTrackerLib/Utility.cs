@@ -82,13 +82,23 @@ namespace BuildTrackerLib
             return BlizzData;
         }
 
-        public static Dictionary<string, string> priorityFind(string[] _prios, List<Dictionary<string, string>> _data, string _key)
+        public static Dictionary<string, string> priorityFind(string[] _prios, List<Dictionary<string, string>> _data, string _key, bool _caseSens)
         {
+            string value, priority;
             foreach (string prio in _prios)
             {
                 foreach (Dictionary<string, string> entry in _data)
                 {
-                    if (entry[_key] == prio)
+                    //if not Case Sensitive transform to lowercase
+                    if (!_caseSens) {
+                        value = entry[_key].ToLower();
+                        priority = prio.ToLower();
+                    } else {
+                        value = entry[_key];
+                        priority = prio;
+                    }
+
+                    if (value == priority)
                     {
                         return entry;
                     }

@@ -30,7 +30,7 @@ namespace BuildTrackerLib
 
             //Find appropriate Region
             string[] priorities = { "us", "xx", "eu", "kr", "tw", "cn", "sg" };
-            Dictionary<string, string> cdndata = Utility.priorityFind(priorities, CDNS_Data, "Name"); // returns a single row of the source data as an associative array
+            Dictionary<string, string> cdndata = Utility.priorityFind(priorities, CDNS_Data, "Name",false); // returns a single row of the source data as an associative array
 
             return cdndata;
         }

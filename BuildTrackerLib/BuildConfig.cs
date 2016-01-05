@@ -25,14 +25,19 @@ namespace BuildTrackerLib
             download = _Buildconfdata["download"];
             install = _Buildconfdata["install"];
             encoding = Regex.Split(_Buildconfdata["encoding"], " ");
-            encoding_size = Regex.Split(_Buildconfdata["encoding-size"], " ");
+            encoding_size = Regex.Split(ifKeyExists("encoding-size"), " ");
             build_name = _Buildconfdata["build-name"];
-            build_playbuild_installer = _Buildconfdata["build-playbuild-installer"];
+            build_playbuild_installer = ifKeyExists("build-playbuild-installer");
             build_product = _Buildconfdata["build-product"];
             build_uid = _Buildconfdata["build-uid"];
-            patch = (_Buildconfdata.ContainsKey("patch")) ? _Buildconfdata["patch"] : "Not found!";
-            patch_size = (_Buildconfdata.ContainsKey("patch-size")) ? _Buildconfdata["patch-size"] : "Not found!";
-            patch_config = (_Buildconfdata.ContainsKey("patch-config")) ? _Buildconfdata["patch-config"] : "Not found!";
+            patch = ifKeyExists("patch");
+            patch_size = ifKeyExists("patch-size");
+            patch_config = ifKeyExists("patch-config");
+        }
+
+
+        private string ifKeyExists(string _key) {
+            return (_Buildconfdata.ContainsKey(_key)) ? _Buildconfdata[_key] : "Not found!";
         }
 
         private Dictionary<string, string> loadBuildConfig(string _url, string _hash)
