@@ -1,3 +1,5 @@
+# Phatso's Blizzard Build Tracker
+
 ## About
 
 Phatso's Blizzard Build Tracker allows you to grab and track Builds for Blizzard Games like World of Warcraft,
