@@ -164,7 +164,7 @@ namespace BlizzardBuildTracker {
                     //Do when ClientVersion has been updated
                     if (cvUpdated) {
                         OnClientUpdate(currentG.Key); // Fire Events
-                        this.log.WriteSuccess("A new Build has been pushed to the '"+currentG.Key+"' Client: "+currentG.Value.getClientVersion().getBuildName(), "Tracker:track()");
+                        this.log.WriteSuccess("The '"+currentG.Key+"' ClientConfig has changed! Version after Update: "+currentG.Value.getClientVersion().getBuildName(), "Tracker:track()");
                     }
 
                     //DO when CDNConfig has been updated
