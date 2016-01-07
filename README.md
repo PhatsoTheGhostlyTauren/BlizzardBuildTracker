@@ -1,5 +1,8 @@
 # Phatso's Blizzard Build Tracker
 
+
+![bbt-splash](https://cloud.githubusercontent.com/assets/16072625/12184809/d3cd4ba2-b597-11e5-99ac-ee7501b433c8.PNG)
+
 ## About
 
 Phatso's Blizzard Build Tracker allows you to grab and track Builds for Blizzard Games like World of Warcraft,
