@@ -31,27 +31,27 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BlizzardBuildTrackerForm));
             this.rtbLog = new System.Windows.Forms.RichTextBox();
-            this.listBoxCDNBuilds = new System.Windows.Forms.ListBox();
-            this.lbCDNBuildHash = new System.Windows.Forms.Label();
-            this.tbCDNBuildHash = new System.Windows.Forms.TextBox();
+            this.lbCDNBuilds = new System.Windows.Forms.ListBox();
+            this.lbCDNBuildKey = new System.Windows.Forms.Label();
+            this.tbCDNBuildKey = new System.Windows.Forms.TextBox();
             this.lbCDNBuildUID = new System.Windows.Forms.Label();
             this.tbCDNBuildUID = new System.Windows.Forms.TextBox();
             this.lbCDNBuildName = new System.Windows.Forms.Label();
             this.tbCDNBuildName = new System.Windows.Forms.TextBox();
-            this.lbCDNBuildRoot = new System.Windows.Forms.Label();
-            this.tbCDNBuildRoot = new System.Windows.Forms.TextBox();
-            this.lbCDNBuildInstall = new System.Windows.Forms.Label();
-            this.tbCDNBuildInstall = new System.Windows.Forms.TextBox();
-            this.lbCDNBuildDownload = new System.Windows.Forms.Label();
-            this.tbCDNBuildDownload = new System.Windows.Forms.TextBox();
+            this.lbCDNBuildRootKey = new System.Windows.Forms.Label();
+            this.tbCDNBuildRootKey = new System.Windows.Forms.TextBox();
+            this.lbCDNBuildInstallKey = new System.Windows.Forms.Label();
+            this.tbCDNBuildInstallKey = new System.Windows.Forms.TextBox();
+            this.lbCDNBuildDownloadKey = new System.Windows.Forms.Label();
+            this.tbCDNBuildDownloadKey = new System.Windows.Forms.TextBox();
             this.lbCDNBuildPatchSize = new System.Windows.Forms.Label();
             this.tbCDNBuildPatchSize = new System.Windows.Forms.TextBox();
-            this.lbCDNBuildPatch = new System.Windows.Forms.Label();
-            this.tbCDNBuildPatch = new System.Windows.Forms.TextBox();
-            this.lbCDNBuildPatchConfig = new System.Windows.Forms.Label();
-            this.tbCDNBuildPatchConfig = new System.Windows.Forms.TextBox();
-            this.lbCDNBuildEncoding = new System.Windows.Forms.Label();
-            this.tbCDNBuildEncoding = new System.Windows.Forms.TextBox();
+            this.lbCDNBuildPatchKey = new System.Windows.Forms.Label();
+            this.tbCDNBuildPatchKey = new System.Windows.Forms.TextBox();
+            this.lbCDNBuildPatchConfigKey = new System.Windows.Forms.Label();
+            this.tbCDNBuildPatchConfigKey = new System.Windows.Forms.TextBox();
+            this.lbCDNBuildEncodingKeys = new System.Windows.Forms.Label();
+            this.tbCDNBuildEncodingKeys = new System.Windows.Forms.TextBox();
             this.lbCDNBuildEncodingSize = new System.Windows.Forms.Label();
             this.tbCDNBuildEncodingSize = new System.Windows.Forms.TextBox();
             this.sCCDNConfig = new System.Windows.Forms.SplitContainer();
@@ -61,15 +61,15 @@
             this.tbCVRegion = new System.Windows.Forms.TextBox();
             this.lbCVBuildName = new System.Windows.Forms.Label();
             this.tbCVBuildName = new System.Windows.Forms.TextBox();
-            this.lbCVBuildConfig = new System.Windows.Forms.Label();
-            this.tbCVBuildConfig = new System.Windows.Forms.TextBox();
-            this.lbCVCDNConfig = new System.Windows.Forms.Label();
-            this.tbLog = new System.Windows.Forms.TextBox();
-            this.buttonLoadVersionsData = new System.Windows.Forms.Button();
-            this.cbGameCode = new System.Windows.Forms.ComboBox();
+            this.lbCVBuildConfigKey = new System.Windows.Forms.Label();
+            this.tbCVBuildConfigKey = new System.Windows.Forms.TextBox();
+            this.lbCVCDNConfigKey = new System.Windows.Forms.Label();
+            this.tbCVCDNConfigKey = new System.Windows.Forms.TextBox();
             this.scGameVersion = new System.Windows.Forms.SplitContainer();
+            this.lbGames = new System.Windows.Forms.ListBox();
             this.panelSpacer1 = new System.Windows.Forms.Panel();
             this.pnLogControl = new System.Windows.Forms.Panel();
+            this.btnOpenTrackerChooser = new System.Windows.Forms.Button();
             this.btnTrackerToggle = new System.Windows.Forms.Button();
             this.numUDTrackerDelay = new System.Windows.Forms.NumericUpDown();
             this.lbTrackerDelay = new System.Windows.Forms.Label();
@@ -101,38 +101,38 @@
             this.rtbLog.TabIndex = 6;
             this.rtbLog.Text = "";
             // 
-            // listBoxCDNBuilds
+            // lbCDNBuilds
             // 
-            this.listBoxCDNBuilds.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxCDNBuilds.FormattingEnabled = true;
-            this.listBoxCDNBuilds.IntegralHeight = false;
-            this.listBoxCDNBuilds.Location = new System.Drawing.Point(0, 0);
-            this.listBoxCDNBuilds.Margin = new System.Windows.Forms.Padding(0);
-            this.listBoxCDNBuilds.Name = "listBoxCDNBuilds";
-            this.listBoxCDNBuilds.Size = new System.Drawing.Size(476, 272);
-            this.listBoxCDNBuilds.TabIndex = 5;
-            this.listBoxCDNBuilds.SelectedIndexChanged += new System.EventHandler(this.listBoxCDNBuilds_SelectedIndexChanged);
+            this.lbCDNBuilds.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbCDNBuilds.FormattingEnabled = true;
+            this.lbCDNBuilds.IntegralHeight = false;
+            this.lbCDNBuilds.Location = new System.Drawing.Point(0, 0);
+            this.lbCDNBuilds.Margin = new System.Windows.Forms.Padding(0);
+            this.lbCDNBuilds.Name = "lbCDNBuilds";
+            this.lbCDNBuilds.Size = new System.Drawing.Size(476, 272);
+            this.lbCDNBuilds.TabIndex = 5;
+            this.lbCDNBuilds.SelectedIndexChanged += new System.EventHandler(this.lbCDNBuilds_SelectedIndexChanged);
             // 
-            // lbCDNBuildHash
+            // lbCDNBuildKey
             // 
-            this.lbCDNBuildHash.AutoSize = true;
-            this.lbCDNBuildHash.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCDNBuildHash.Location = new System.Drawing.Point(8, 6);
-            this.lbCDNBuildHash.Name = "lbCDNBuildHash";
-            this.lbCDNBuildHash.Size = new System.Drawing.Size(90, 22);
-            this.lbCDNBuildHash.TabIndex = 26;
-            this.lbCDNBuildHash.Text = "Build-Hash:";
+            this.lbCDNBuildKey.AutoSize = true;
+            this.lbCDNBuildKey.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCDNBuildKey.Location = new System.Drawing.Point(8, 6);
+            this.lbCDNBuildKey.Name = "lbCDNBuildKey";
+            this.lbCDNBuildKey.Size = new System.Drawing.Size(83, 22);
+            this.lbCDNBuildKey.TabIndex = 26;
+            this.lbCDNBuildKey.Text = "Build-Key:";
             // 
-            // tbCDNBuildHash
+            // tbCDNBuildKey
             // 
-            this.tbCDNBuildHash.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.tbCDNBuildHash.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.tbCDNBuildHash.ForeColor = System.Drawing.Color.Black;
-            this.tbCDNBuildHash.Location = new System.Drawing.Point(128, 7);
-            this.tbCDNBuildHash.Name = "tbCDNBuildHash";
-            this.tbCDNBuildHash.ReadOnly = true;
-            this.tbCDNBuildHash.Size = new System.Drawing.Size(238, 20);
-            this.tbCDNBuildHash.TabIndex = 27;
+            this.tbCDNBuildKey.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tbCDNBuildKey.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.tbCDNBuildKey.ForeColor = System.Drawing.Color.Black;
+            this.tbCDNBuildKey.Location = new System.Drawing.Point(128, 7);
+            this.tbCDNBuildKey.Name = "tbCDNBuildKey";
+            this.tbCDNBuildKey.ReadOnly = true;
+            this.tbCDNBuildKey.Size = new System.Drawing.Size(238, 20);
+            this.tbCDNBuildKey.TabIndex = 27;
             // 
             // lbCDNBuildUID
             // 
@@ -176,68 +176,68 @@
             this.tbCDNBuildName.Size = new System.Drawing.Size(461, 20);
             this.tbCDNBuildName.TabIndex = 31;
             // 
-            // lbCDNBuildRoot
+            // lbCDNBuildRootKey
             // 
-            this.lbCDNBuildRoot.AutoSize = true;
-            this.lbCDNBuildRoot.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCDNBuildRoot.Location = new System.Drawing.Point(8, 58);
-            this.lbCDNBuildRoot.Name = "lbCDNBuildRoot";
-            this.lbCDNBuildRoot.Size = new System.Drawing.Size(48, 22);
-            this.lbCDNBuildRoot.TabIndex = 32;
-            this.lbCDNBuildRoot.Text = "Root:";
+            this.lbCDNBuildRootKey.AutoSize = true;
+            this.lbCDNBuildRootKey.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCDNBuildRootKey.Location = new System.Drawing.Point(8, 58);
+            this.lbCDNBuildRootKey.Name = "lbCDNBuildRootKey";
+            this.lbCDNBuildRootKey.Size = new System.Drawing.Size(48, 22);
+            this.lbCDNBuildRootKey.TabIndex = 32;
+            this.lbCDNBuildRootKey.Text = "Root:";
             // 
-            // tbCDNBuildRoot
+            // tbCDNBuildRootKey
             // 
-            this.tbCDNBuildRoot.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.tbCDNBuildRoot.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.tbCDNBuildRoot.ForeColor = System.Drawing.Color.Black;
-            this.tbCDNBuildRoot.Location = new System.Drawing.Point(128, 59);
-            this.tbCDNBuildRoot.Name = "tbCDNBuildRoot";
-            this.tbCDNBuildRoot.ReadOnly = true;
-            this.tbCDNBuildRoot.Size = new System.Drawing.Size(461, 20);
-            this.tbCDNBuildRoot.TabIndex = 33;
+            this.tbCDNBuildRootKey.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tbCDNBuildRootKey.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.tbCDNBuildRootKey.ForeColor = System.Drawing.Color.Black;
+            this.tbCDNBuildRootKey.Location = new System.Drawing.Point(128, 59);
+            this.tbCDNBuildRootKey.Name = "tbCDNBuildRootKey";
+            this.tbCDNBuildRootKey.ReadOnly = true;
+            this.tbCDNBuildRootKey.Size = new System.Drawing.Size(461, 20);
+            this.tbCDNBuildRootKey.TabIndex = 33;
             // 
-            // lbCDNBuildInstall
+            // lbCDNBuildInstallKey
             // 
-            this.lbCDNBuildInstall.AutoSize = true;
-            this.lbCDNBuildInstall.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCDNBuildInstall.Location = new System.Drawing.Point(8, 84);
-            this.lbCDNBuildInstall.Name = "lbCDNBuildInstall";
-            this.lbCDNBuildInstall.Size = new System.Drawing.Size(56, 22);
-            this.lbCDNBuildInstall.TabIndex = 34;
-            this.lbCDNBuildInstall.Text = "Install:";
+            this.lbCDNBuildInstallKey.AutoSize = true;
+            this.lbCDNBuildInstallKey.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCDNBuildInstallKey.Location = new System.Drawing.Point(8, 84);
+            this.lbCDNBuildInstallKey.Name = "lbCDNBuildInstallKey";
+            this.lbCDNBuildInstallKey.Size = new System.Drawing.Size(56, 22);
+            this.lbCDNBuildInstallKey.TabIndex = 34;
+            this.lbCDNBuildInstallKey.Text = "Install:";
             // 
-            // tbCDNBuildInstall
+            // tbCDNBuildInstallKey
             // 
-            this.tbCDNBuildInstall.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.tbCDNBuildInstall.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.tbCDNBuildInstall.ForeColor = System.Drawing.Color.Black;
-            this.tbCDNBuildInstall.Location = new System.Drawing.Point(128, 85);
-            this.tbCDNBuildInstall.Name = "tbCDNBuildInstall";
-            this.tbCDNBuildInstall.ReadOnly = true;
-            this.tbCDNBuildInstall.Size = new System.Drawing.Size(461, 20);
-            this.tbCDNBuildInstall.TabIndex = 35;
+            this.tbCDNBuildInstallKey.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tbCDNBuildInstallKey.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.tbCDNBuildInstallKey.ForeColor = System.Drawing.Color.Black;
+            this.tbCDNBuildInstallKey.Location = new System.Drawing.Point(128, 85);
+            this.tbCDNBuildInstallKey.Name = "tbCDNBuildInstallKey";
+            this.tbCDNBuildInstallKey.ReadOnly = true;
+            this.tbCDNBuildInstallKey.Size = new System.Drawing.Size(461, 20);
+            this.tbCDNBuildInstallKey.TabIndex = 35;
             // 
-            // lbCDNBuildDownload
+            // lbCDNBuildDownloadKey
             // 
-            this.lbCDNBuildDownload.AutoSize = true;
-            this.lbCDNBuildDownload.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCDNBuildDownload.Location = new System.Drawing.Point(8, 110);
-            this.lbCDNBuildDownload.Name = "lbCDNBuildDownload";
-            this.lbCDNBuildDownload.Size = new System.Drawing.Size(86, 22);
-            this.lbCDNBuildDownload.TabIndex = 36;
-            this.lbCDNBuildDownload.Text = "Download:";
+            this.lbCDNBuildDownloadKey.AutoSize = true;
+            this.lbCDNBuildDownloadKey.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCDNBuildDownloadKey.Location = new System.Drawing.Point(8, 110);
+            this.lbCDNBuildDownloadKey.Name = "lbCDNBuildDownloadKey";
+            this.lbCDNBuildDownloadKey.Size = new System.Drawing.Size(86, 22);
+            this.lbCDNBuildDownloadKey.TabIndex = 36;
+            this.lbCDNBuildDownloadKey.Text = "Download:";
             // 
-            // tbCDNBuildDownload
+            // tbCDNBuildDownloadKey
             // 
-            this.tbCDNBuildDownload.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.tbCDNBuildDownload.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.tbCDNBuildDownload.ForeColor = System.Drawing.Color.Black;
-            this.tbCDNBuildDownload.Location = new System.Drawing.Point(128, 111);
-            this.tbCDNBuildDownload.Name = "tbCDNBuildDownload";
-            this.tbCDNBuildDownload.ReadOnly = true;
-            this.tbCDNBuildDownload.Size = new System.Drawing.Size(461, 20);
-            this.tbCDNBuildDownload.TabIndex = 37;
+            this.tbCDNBuildDownloadKey.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tbCDNBuildDownloadKey.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.tbCDNBuildDownloadKey.ForeColor = System.Drawing.Color.Black;
+            this.tbCDNBuildDownloadKey.Location = new System.Drawing.Point(128, 111);
+            this.tbCDNBuildDownloadKey.Name = "tbCDNBuildDownloadKey";
+            this.tbCDNBuildDownloadKey.ReadOnly = true;
+            this.tbCDNBuildDownloadKey.Size = new System.Drawing.Size(461, 20);
+            this.tbCDNBuildDownloadKey.TabIndex = 37;
             // 
             // lbCDNBuildPatchSize
             // 
@@ -260,68 +260,68 @@
             this.tbCDNBuildPatchSize.Size = new System.Drawing.Size(461, 20);
             this.tbCDNBuildPatchSize.TabIndex = 39;
             // 
-            // lbCDNBuildPatch
+            // lbCDNBuildPatchKey
             // 
-            this.lbCDNBuildPatch.AutoSize = true;
-            this.lbCDNBuildPatch.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCDNBuildPatch.Location = new System.Drawing.Point(8, 136);
-            this.lbCDNBuildPatch.Name = "lbCDNBuildPatch";
-            this.lbCDNBuildPatch.Size = new System.Drawing.Size(55, 22);
-            this.lbCDNBuildPatch.TabIndex = 40;
-            this.lbCDNBuildPatch.Text = "Patch:";
+            this.lbCDNBuildPatchKey.AutoSize = true;
+            this.lbCDNBuildPatchKey.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCDNBuildPatchKey.Location = new System.Drawing.Point(8, 136);
+            this.lbCDNBuildPatchKey.Name = "lbCDNBuildPatchKey";
+            this.lbCDNBuildPatchKey.Size = new System.Drawing.Size(55, 22);
+            this.lbCDNBuildPatchKey.TabIndex = 40;
+            this.lbCDNBuildPatchKey.Text = "Patch:";
             // 
-            // tbCDNBuildPatch
+            // tbCDNBuildPatchKey
             // 
-            this.tbCDNBuildPatch.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.tbCDNBuildPatch.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.tbCDNBuildPatch.ForeColor = System.Drawing.Color.Black;
-            this.tbCDNBuildPatch.Location = new System.Drawing.Point(128, 137);
-            this.tbCDNBuildPatch.Name = "tbCDNBuildPatch";
-            this.tbCDNBuildPatch.ReadOnly = true;
-            this.tbCDNBuildPatch.Size = new System.Drawing.Size(461, 20);
-            this.tbCDNBuildPatch.TabIndex = 41;
+            this.tbCDNBuildPatchKey.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tbCDNBuildPatchKey.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.tbCDNBuildPatchKey.ForeColor = System.Drawing.Color.Black;
+            this.tbCDNBuildPatchKey.Location = new System.Drawing.Point(128, 137);
+            this.tbCDNBuildPatchKey.Name = "tbCDNBuildPatchKey";
+            this.tbCDNBuildPatchKey.ReadOnly = true;
+            this.tbCDNBuildPatchKey.Size = new System.Drawing.Size(461, 20);
+            this.tbCDNBuildPatchKey.TabIndex = 41;
             // 
-            // lbCDNBuildPatchConfig
+            // lbCDNBuildPatchConfigKey
             // 
-            this.lbCDNBuildPatchConfig.AutoSize = true;
-            this.lbCDNBuildPatchConfig.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCDNBuildPatchConfig.Location = new System.Drawing.Point(8, 188);
-            this.lbCDNBuildPatchConfig.Name = "lbCDNBuildPatchConfig";
-            this.lbCDNBuildPatchConfig.Size = new System.Drawing.Size(107, 22);
-            this.lbCDNBuildPatchConfig.TabIndex = 42;
-            this.lbCDNBuildPatchConfig.Text = "Patch-Config:";
+            this.lbCDNBuildPatchConfigKey.AutoSize = true;
+            this.lbCDNBuildPatchConfigKey.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCDNBuildPatchConfigKey.Location = new System.Drawing.Point(8, 188);
+            this.lbCDNBuildPatchConfigKey.Name = "lbCDNBuildPatchConfigKey";
+            this.lbCDNBuildPatchConfigKey.Size = new System.Drawing.Size(107, 22);
+            this.lbCDNBuildPatchConfigKey.TabIndex = 42;
+            this.lbCDNBuildPatchConfigKey.Text = "Patch-Config:";
             // 
-            // tbCDNBuildPatchConfig
+            // tbCDNBuildPatchConfigKey
             // 
-            this.tbCDNBuildPatchConfig.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.tbCDNBuildPatchConfig.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.tbCDNBuildPatchConfig.ForeColor = System.Drawing.Color.Black;
-            this.tbCDNBuildPatchConfig.Location = new System.Drawing.Point(128, 189);
-            this.tbCDNBuildPatchConfig.Name = "tbCDNBuildPatchConfig";
-            this.tbCDNBuildPatchConfig.ReadOnly = true;
-            this.tbCDNBuildPatchConfig.Size = new System.Drawing.Size(461, 20);
-            this.tbCDNBuildPatchConfig.TabIndex = 43;
+            this.tbCDNBuildPatchConfigKey.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tbCDNBuildPatchConfigKey.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.tbCDNBuildPatchConfigKey.ForeColor = System.Drawing.Color.Black;
+            this.tbCDNBuildPatchConfigKey.Location = new System.Drawing.Point(128, 189);
+            this.tbCDNBuildPatchConfigKey.Name = "tbCDNBuildPatchConfigKey";
+            this.tbCDNBuildPatchConfigKey.ReadOnly = true;
+            this.tbCDNBuildPatchConfigKey.Size = new System.Drawing.Size(461, 20);
+            this.tbCDNBuildPatchConfigKey.TabIndex = 43;
             // 
-            // lbCDNBuildEncoding
+            // lbCDNBuildEncodingKeys
             // 
-            this.lbCDNBuildEncoding.AutoSize = true;
-            this.lbCDNBuildEncoding.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCDNBuildEncoding.Location = new System.Drawing.Point(8, 214);
-            this.lbCDNBuildEncoding.Name = "lbCDNBuildEncoding";
-            this.lbCDNBuildEncoding.Size = new System.Drawing.Size(80, 22);
-            this.lbCDNBuildEncoding.TabIndex = 44;
-            this.lbCDNBuildEncoding.Text = "Encoding:";
+            this.lbCDNBuildEncodingKeys.AutoSize = true;
+            this.lbCDNBuildEncodingKeys.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCDNBuildEncodingKeys.Location = new System.Drawing.Point(8, 214);
+            this.lbCDNBuildEncodingKeys.Name = "lbCDNBuildEncodingKeys";
+            this.lbCDNBuildEncodingKeys.Size = new System.Drawing.Size(80, 22);
+            this.lbCDNBuildEncodingKeys.TabIndex = 44;
+            this.lbCDNBuildEncodingKeys.Text = "Encoding:";
             // 
-            // tbCDNBuildEncoding
+            // tbCDNBuildEncodingKeys
             // 
-            this.tbCDNBuildEncoding.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.tbCDNBuildEncoding.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.tbCDNBuildEncoding.ForeColor = System.Drawing.Color.Black;
-            this.tbCDNBuildEncoding.Location = new System.Drawing.Point(128, 215);
-            this.tbCDNBuildEncoding.Name = "tbCDNBuildEncoding";
-            this.tbCDNBuildEncoding.ReadOnly = true;
-            this.tbCDNBuildEncoding.Size = new System.Drawing.Size(461, 20);
-            this.tbCDNBuildEncoding.TabIndex = 45;
+            this.tbCDNBuildEncodingKeys.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tbCDNBuildEncodingKeys.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.tbCDNBuildEncodingKeys.ForeColor = System.Drawing.Color.Black;
+            this.tbCDNBuildEncodingKeys.Location = new System.Drawing.Point(128, 215);
+            this.tbCDNBuildEncodingKeys.Name = "tbCDNBuildEncodingKeys";
+            this.tbCDNBuildEncodingKeys.ReadOnly = true;
+            this.tbCDNBuildEncodingKeys.Size = new System.Drawing.Size(461, 20);
+            this.tbCDNBuildEncodingKeys.TabIndex = 45;
             // 
             // lbCDNBuildEncodingSize
             // 
@@ -358,30 +358,30 @@
             this.sCCDNConfig.Panel1.BackColor = System.Drawing.Color.Silver;
             this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildEncodingSize);
             this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildEncodingSize);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildEncoding);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildEncoding);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildPatchConfig);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildPatchConfig);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildPatch);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildPatch);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildEncodingKeys);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildEncodingKeys);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildPatchConfigKey);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildPatchConfigKey);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildPatchKey);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildPatchKey);
             this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildPatchSize);
             this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildPatchSize);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildDownload);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildDownload);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildInstall);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildInstall);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildRoot);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildRoot);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildDownloadKey);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildDownloadKey);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildInstallKey);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildInstallKey);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildRootKey);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildRootKey);
             this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildName);
             this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildName);
             this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildUID);
             this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildUID);
-            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildHash);
-            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildHash);
+            this.sCCDNConfig.Panel1.Controls.Add(this.tbCDNBuildKey);
+            this.sCCDNConfig.Panel1.Controls.Add(this.lbCDNBuildKey);
             // 
             // sCCDNConfig.Panel2
             // 
-            this.sCCDNConfig.Panel2.Controls.Add(this.listBoxCDNBuilds);
+            this.sCCDNConfig.Panel2.Controls.Add(this.lbCDNBuilds);
             this.sCCDNConfig.Size = new System.Drawing.Size(1090, 272);
             this.sCCDNConfig.SplitterDistance = 604;
             this.sCCDNConfig.SplitterWidth = 10;
@@ -450,73 +450,47 @@
             this.tbCVBuildName.Size = new System.Drawing.Size(484, 20);
             this.tbCVBuildName.TabIndex = 19;
             // 
-            // lbCVBuildConfig
+            // lbCVBuildConfigKey
             // 
-            this.lbCVBuildConfig.AutoSize = true;
-            this.lbCVBuildConfig.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCVBuildConfig.Location = new System.Drawing.Point(3, 68);
-            this.lbCVBuildConfig.Name = "lbCVBuildConfig";
-            this.lbCVBuildConfig.Size = new System.Drawing.Size(97, 22);
-            this.lbCVBuildConfig.TabIndex = 20;
-            this.lbCVBuildConfig.Text = "BuildConfig:";
+            this.lbCVBuildConfigKey.AutoSize = true;
+            this.lbCVBuildConfigKey.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCVBuildConfigKey.Location = new System.Drawing.Point(3, 68);
+            this.lbCVBuildConfigKey.Name = "lbCVBuildConfigKey";
+            this.lbCVBuildConfigKey.Size = new System.Drawing.Size(97, 22);
+            this.lbCVBuildConfigKey.TabIndex = 20;
+            this.lbCVBuildConfigKey.Text = "BuildConfig:";
             // 
-            // tbCVBuildConfig
+            // tbCVBuildConfigKey
             // 
-            this.tbCVBuildConfig.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.tbCVBuildConfig.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.tbCVBuildConfig.ForeColor = System.Drawing.Color.Black;
-            this.tbCVBuildConfig.Location = new System.Drawing.Point(100, 69);
-            this.tbCVBuildConfig.Name = "tbCVBuildConfig";
-            this.tbCVBuildConfig.ReadOnly = true;
-            this.tbCVBuildConfig.Size = new System.Drawing.Size(484, 20);
-            this.tbCVBuildConfig.TabIndex = 21;
+            this.tbCVBuildConfigKey.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tbCVBuildConfigKey.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.tbCVBuildConfigKey.ForeColor = System.Drawing.Color.Black;
+            this.tbCVBuildConfigKey.Location = new System.Drawing.Point(100, 69);
+            this.tbCVBuildConfigKey.Name = "tbCVBuildConfigKey";
+            this.tbCVBuildConfigKey.ReadOnly = true;
+            this.tbCVBuildConfigKey.Size = new System.Drawing.Size(484, 20);
+            this.tbCVBuildConfigKey.TabIndex = 21;
             // 
-            // lbCVCDNConfig
+            // lbCVCDNConfigKey
             // 
-            this.lbCVCDNConfig.AutoSize = true;
-            this.lbCVCDNConfig.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCVCDNConfig.Location = new System.Drawing.Point(3, 101);
-            this.lbCVCDNConfig.Name = "lbCVCDNConfig";
-            this.lbCVCDNConfig.Size = new System.Drawing.Size(92, 22);
-            this.lbCVCDNConfig.TabIndex = 22;
-            this.lbCVCDNConfig.Text = "CDNConfig:";
+            this.lbCVCDNConfigKey.AutoSize = true;
+            this.lbCVCDNConfigKey.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCVCDNConfigKey.Location = new System.Drawing.Point(3, 101);
+            this.lbCVCDNConfigKey.Name = "lbCVCDNConfigKey";
+            this.lbCVCDNConfigKey.Size = new System.Drawing.Size(92, 22);
+            this.lbCVCDNConfigKey.TabIndex = 22;
+            this.lbCVCDNConfigKey.Text = "CDNConfig:";
             // 
-            // tbLog
+            // tbCVCDNConfigKey
             // 
-            this.tbLog.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.tbLog.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.tbLog.ForeColor = System.Drawing.Color.Black;
-            this.tbLog.Location = new System.Drawing.Point(100, 102);
-            this.tbLog.Name = "tbLog";
-            this.tbLog.ReadOnly = true;
-            this.tbLog.Size = new System.Drawing.Size(484, 20);
-            this.tbLog.TabIndex = 23;
-            // 
-            // buttonLoadVersionsData
-            // 
-            this.buttonLoadVersionsData.AutoEllipsis = true;
-            this.buttonLoadVersionsData.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonLoadVersionsData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLoadVersionsData.Location = new System.Drawing.Point(0, 23);
-            this.buttonLoadVersionsData.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonLoadVersionsData.Name = "buttonLoadVersionsData";
-            this.buttonLoadVersionsData.Size = new System.Drawing.Size(482, 106);
-            this.buttonLoadVersionsData.TabIndex = 10;
-            this.buttonLoadVersionsData.Text = "Load Game";
-            this.buttonLoadVersionsData.UseCompatibleTextRendering = true;
-            this.buttonLoadVersionsData.UseVisualStyleBackColor = true;
-            this.buttonLoadVersionsData.Click += new System.EventHandler(this.buttonLoadVersionsData_Click);
-            // 
-            // cbGameCode
-            // 
-            this.cbGameCode.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cbGameCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbGameCode.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cbGameCode.Location = new System.Drawing.Point(0, 0);
-            this.cbGameCode.Name = "cbGameCode";
-            this.cbGameCode.Size = new System.Drawing.Size(482, 21);
-            this.cbGameCode.Sorted = true;
-            this.cbGameCode.TabIndex = 9;
+            this.tbCVCDNConfigKey.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tbCVCDNConfigKey.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.tbCVCDNConfigKey.ForeColor = System.Drawing.Color.Black;
+            this.tbCVCDNConfigKey.Location = new System.Drawing.Point(100, 102);
+            this.tbCVCDNConfigKey.Name = "tbCVCDNConfigKey";
+            this.tbCVCDNConfigKey.ReadOnly = true;
+            this.tbCVCDNConfigKey.Size = new System.Drawing.Size(484, 20);
+            this.tbCVCDNConfigKey.TabIndex = 23;
             // 
             // scGameVersion
             // 
@@ -530,16 +504,15 @@
             // 
             // scGameVersion.Panel1
             // 
-            this.scGameVersion.Panel1.Controls.Add(this.cbGameCode);
-            this.scGameVersion.Panel1.Controls.Add(this.buttonLoadVersionsData);
+            this.scGameVersion.Panel1.Controls.Add(this.lbGames);
             // 
             // scGameVersion.Panel2
             // 
             this.scGameVersion.Panel2.BackColor = System.Drawing.Color.Silver;
-            this.scGameVersion.Panel2.Controls.Add(this.tbLog);
-            this.scGameVersion.Panel2.Controls.Add(this.lbCVCDNConfig);
-            this.scGameVersion.Panel2.Controls.Add(this.tbCVBuildConfig);
-            this.scGameVersion.Panel2.Controls.Add(this.lbCVBuildConfig);
+            this.scGameVersion.Panel2.Controls.Add(this.tbCVCDNConfigKey);
+            this.scGameVersion.Panel2.Controls.Add(this.lbCVCDNConfigKey);
+            this.scGameVersion.Panel2.Controls.Add(this.tbCVBuildConfigKey);
+            this.scGameVersion.Panel2.Controls.Add(this.lbCVBuildConfigKey);
             this.scGameVersion.Panel2.Controls.Add(this.tbCVBuildName);
             this.scGameVersion.Panel2.Controls.Add(this.lbCVBuildName);
             this.scGameVersion.Panel2.Controls.Add(this.tbCVRegion);
@@ -549,6 +522,17 @@
             this.scGameVersion.Size = new System.Drawing.Size(1090, 129);
             this.scGameVersion.SplitterDistance = 482;
             this.scGameVersion.TabIndex = 7;
+            // 
+            // lbGames
+            // 
+            this.lbGames.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbGames.FormattingEnabled = true;
+            this.lbGames.IntegralHeight = false;
+            this.lbGames.Location = new System.Drawing.Point(0, 0);
+            this.lbGames.Name = "lbGames";
+            this.lbGames.Size = new System.Drawing.Size(482, 129);
+            this.lbGames.TabIndex = 0;
+            this.lbGames.SelectedIndexChanged += new System.EventHandler(this.lbGames_SelectedIndexChanged);
             // 
             // panelSpacer1
             // 
@@ -562,6 +546,7 @@
             // 
             this.pnLogControl.BackColor = System.Drawing.Color.Silver;
             this.pnLogControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnLogControl.Controls.Add(this.btnOpenTrackerChooser);
             this.pnLogControl.Controls.Add(this.btnTrackerToggle);
             this.pnLogControl.Controls.Add(this.numUDTrackerDelay);
             this.pnLogControl.Controls.Add(this.lbTrackerDelay);
@@ -571,6 +556,18 @@
             this.pnLogControl.Name = "pnLogControl";
             this.pnLogControl.Size = new System.Drawing.Size(1090, 25);
             this.pnLogControl.TabIndex = 10;
+            // 
+            // btnOpenTrackerChooser
+            // 
+            this.btnOpenTrackerChooser.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnOpenTrackerChooser.Location = new System.Drawing.Point(968, 0);
+            this.btnOpenTrackerChooser.Margin = new System.Windows.Forms.Padding(0);
+            this.btnOpenTrackerChooser.Name = "btnOpenTrackerChooser";
+            this.btnOpenTrackerChooser.Size = new System.Drawing.Size(120, 23);
+            this.btnOpenTrackerChooser.TabIndex = 9;
+            this.btnOpenTrackerChooser.Text = "Choose Trackers";
+            this.btnOpenTrackerChooser.UseVisualStyleBackColor = true;
+            this.btnOpenTrackerChooser.Click += new System.EventHandler(this.btnOpenTrackerChooser_Click);
             // 
             // btnTrackerToggle
             // 
@@ -585,7 +582,6 @@
             // 
             // numUDTrackerDelay
             // 
-            this.numUDTrackerDelay.Enabled = false;
             this.numUDTrackerDelay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numUDTrackerDelay.Increment = new decimal(new int[] {
             5,
@@ -627,7 +623,7 @@
             // TrackerTimer
             // 
             this.TrackerTimer.Interval = 99999;
-            this.TrackerTimer.Tick += new System.EventHandler(this.track);
+            this.TrackerTimer.Tick += new System.EventHandler(this.TrackerTimer_Tick);
             // 
             // panelSpacer2
             // 
@@ -653,6 +649,7 @@
             this.Name = "BlizzardBuildTrackerForm";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.Text = "Blizzard Build Tracker";
+            this.Load += new System.EventHandler(this.BlizzardBuildTrackerForm_Load);
             this.sCCDNConfig.Panel1.ResumeLayout(false);
             this.sCCDNConfig.Panel1.PerformLayout();
             this.sCCDNConfig.Panel2.ResumeLayout(false);
@@ -672,12 +669,10 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer scGameVersion;
-        private System.Windows.Forms.ComboBox cbGameCode;
-        private System.Windows.Forms.Button buttonLoadVersionsData;
-        private System.Windows.Forms.TextBox tbLog;
-        private System.Windows.Forms.Label lbCVCDNConfig;
-        private System.Windows.Forms.TextBox tbCVBuildConfig;
-        private System.Windows.Forms.Label lbCVBuildConfig;
+        private System.Windows.Forms.TextBox tbCVCDNConfigKey;
+        private System.Windows.Forms.Label lbCVCDNConfigKey;
+        private System.Windows.Forms.TextBox tbCVBuildConfigKey;
+        private System.Windows.Forms.Label lbCVBuildConfigKey;
         private System.Windows.Forms.TextBox tbCVBuildName;
         private System.Windows.Forms.Label lbCVBuildName;
         private System.Windows.Forms.TextBox tbCVRegion;
@@ -687,27 +682,27 @@
         private System.Windows.Forms.SplitContainer sCCDNConfig;
         private System.Windows.Forms.TextBox tbCDNBuildEncodingSize;
         private System.Windows.Forms.Label lbCDNBuildEncodingSize;
-        private System.Windows.Forms.TextBox tbCDNBuildEncoding;
-        private System.Windows.Forms.Label lbCDNBuildEncoding;
-        private System.Windows.Forms.TextBox tbCDNBuildPatchConfig;
-        private System.Windows.Forms.Label lbCDNBuildPatchConfig;
-        private System.Windows.Forms.TextBox tbCDNBuildPatch;
-        private System.Windows.Forms.Label lbCDNBuildPatch;
+        private System.Windows.Forms.TextBox tbCDNBuildEncodingKeys;
+        private System.Windows.Forms.Label lbCDNBuildEncodingKeys;
+        private System.Windows.Forms.TextBox tbCDNBuildPatchConfigKey;
+        private System.Windows.Forms.Label lbCDNBuildPatchConfigKey;
+        private System.Windows.Forms.TextBox tbCDNBuildPatchKey;
+        private System.Windows.Forms.Label lbCDNBuildPatchKey;
         private System.Windows.Forms.TextBox tbCDNBuildPatchSize;
         private System.Windows.Forms.Label lbCDNBuildPatchSize;
-        private System.Windows.Forms.TextBox tbCDNBuildDownload;
-        private System.Windows.Forms.Label lbCDNBuildDownload;
-        private System.Windows.Forms.TextBox tbCDNBuildInstall;
-        private System.Windows.Forms.Label lbCDNBuildInstall;
-        private System.Windows.Forms.TextBox tbCDNBuildRoot;
-        private System.Windows.Forms.Label lbCDNBuildRoot;
+        private System.Windows.Forms.TextBox tbCDNBuildDownloadKey;
+        private System.Windows.Forms.Label lbCDNBuildDownloadKey;
+        private System.Windows.Forms.TextBox tbCDNBuildInstallKey;
+        private System.Windows.Forms.Label lbCDNBuildInstallKey;
+        private System.Windows.Forms.TextBox tbCDNBuildRootKey;
+        private System.Windows.Forms.Label lbCDNBuildRootKey;
         private System.Windows.Forms.TextBox tbCDNBuildName;
         private System.Windows.Forms.Label lbCDNBuildName;
         private System.Windows.Forms.TextBox tbCDNBuildUID;
         private System.Windows.Forms.Label lbCDNBuildUID;
-        private System.Windows.Forms.TextBox tbCDNBuildHash;
-        private System.Windows.Forms.Label lbCDNBuildHash;
-        private System.Windows.Forms.ListBox listBoxCDNBuilds;
+        private System.Windows.Forms.TextBox tbCDNBuildKey;
+        private System.Windows.Forms.Label lbCDNBuildKey;
+        private System.Windows.Forms.ListBox lbCDNBuilds;
         private System.Windows.Forms.RichTextBox rtbLog;
         private System.Windows.Forms.Panel panelSpacer1;
         private System.Windows.Forms.Panel pnLogControl;
@@ -716,6 +711,8 @@
         private System.Windows.Forms.NumericUpDown numUDTrackerDelay;
         private System.Windows.Forms.Button btnTrackerToggle;
         private System.Windows.Forms.Panel panelSpacer2;
+        private System.Windows.Forms.ListBox lbGames;
+        private System.Windows.Forms.Button btnOpenTrackerChooser;
     }
 }
 

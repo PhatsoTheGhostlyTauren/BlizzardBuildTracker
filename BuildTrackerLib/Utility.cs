@@ -11,12 +11,22 @@ namespace BuildTrackerLib
     public class Utility
     {
 
-        public static string getString(string _url)
+        public static string getString(string _url,ref Log _log)
         {
             using (WebClient client = new WebClient())
             {
-                string data = client.DownloadString(_url);
-                //Console.WriteLine(_url + Environment.NewLine + client.ResponseHeaders);
+                Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                string no_cached_url = _url + "?fuckcache=" + unixTimestamp;
+                string data = null;
+                try {
+                    data = client.DownloadString(no_cached_url);
+                } catch(Exception E) {
+
+                    _log.WriteWarning("Error downloading data!", "Utility:getString()");
+                    _log.WriteWarning(E.Message, "Utility:getString()");
+                    //Console.WriteLine(_url + Environment.NewLine + client.ResponseHeaders);
+                }
+
                 return data;
             }
         }

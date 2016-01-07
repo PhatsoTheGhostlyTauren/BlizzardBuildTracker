@@ -10,36 +10,43 @@ namespace BuildTrackerLib
 
     public class CDNConfig
     {
-        public string checksum, config_hash, config_url, base_url;
+        public string checksum, config_key, config_url, dist_url;
 
-        public string[] archives;
-        public string archive_group;
-        public string[] patch_archives;
-        public string patch_archive_group;
-        public string[] build_hashes;
-        public Dictionary<string, BuildConfig> builds;
-        Dictionary<string, string> CDNConfData;
-        public Log log;
+        private string[] archives;
+        private string archive_group;
+        private string[] patch_archives;
+        private string patch_archive_group;
+        private string[] build_keys;
+        private Dictionary<string, string> CDNConfData;
+        private Log log;
 
-        public CDNConfig(string _url, string _hash, Log _log) {
-            this.base_url = _url;
-            this.config_hash = _hash;
-            this.config_url = Utility.getHashUrl(_url, _hash);
+        public CDNConfig(string _url, string _key, ref Log _log) {
+            this.dist_url = _url;
+            this.config_key = _key;
+            this.config_url = Utility.getHashUrl(this.dist_url, this.config_key);
             this.log = _log;
 
             this.CDNConfData = loadCDNConfig();
             parseCDNConfigDictionary(this.CDNConfData);
-
-            this.builds = loadBuilds(base_url, build_hashes);
         }
         
+        //Getters 'n' Setters
+
+        public string[] getBuildKeys() {
+            return this.build_keys;
+        }
+
+        public string getConfigKey() {
+            return this.config_key;
+        }
+
         
-        public void parseCDNConfigDictionary(Dictionary<string,string> _CDNconfdata) {
+        private void parseCDNConfigDictionary(Dictionary<string,string> _CDNconfdata) {
             this.archives = Regex.Split(ifKeyExists("archives"), " ");
             this.archive_group = ifKeyExists("archive-group");
             this.patch_archives = Regex.Split(ifKeyExists("patch-archives"), " ");
             this.patch_archive_group = ifKeyExists("patch-archive-group");
-            this.build_hashes = Regex.Split(ifKeyExists("builds"), " ");
+            this.build_keys = Regex.Split(ifKeyExists("builds"), " ");
         }
 
         private string ifKeyExists(string _key) {
@@ -50,26 +57,14 @@ namespace BuildTrackerLib
         private Dictionary<string, string> loadCDNConfig()
         {
             //Download Version String from BNet
-            string CDNConfig_string = Utility.getString(this.config_url);
+            string CDNConfig_string = Utility.getString(this.config_url,ref this.log);
             this.checksum = Utility.CreateMD5(CDNConfig_string);
+
             //Generate Line By Line Dictionary
             Dictionary<string, string> CDNConfig_Data = Utility.convertBlizzData(CDNConfig_string);
-            log.WriteMessage("Succesfully loaded CDN-Config!", "CDNConfig:loadCDNConfig");
+
             return CDNConfig_Data;
         }
-
-        //Iterate through BuildHashes to generate BuildConfig-Objects
-        private Dictionary<string, BuildConfig> loadBuilds(string _url, string[] _BuildConfigHashes) {
-            Dictionary<string, BuildConfig> result = new Dictionary<string, BuildConfig>();
-            BuildConfig tmp;
-            foreach (string hash in _BuildConfigHashes) {
-                tmp = new BuildConfig(_url, hash);
-                result[hash] = tmp;
-            }
-            this.log.WriteMessage(String.Format("Loading Build-Config ({0}/{1})", result.Count, _BuildConfigHashes.Length), "CDNConfig:loadBuilds");
-            return result;
-        }
-
 
         //Update the CDNConfig-Object after finding that the 
         private void updateCDNConfig(string _datastr) {
@@ -77,15 +72,14 @@ namespace BuildTrackerLib
             Dictionary<string, string> CDNConfig_Data = Utility.convertBlizzData(_datastr);
 
             //Continue to parse the updated Config
-            parseCDNConfigDictionary(CDNConfig_Data);
-            this.builds = loadBuilds(this.base_url, this.build_hashes);
+            this.parseCDNConfigDictionary(CDNConfig_Data);
         }
 
 
 
 
         public bool checkForUpdates() {
-            string data = Utility.getString(this.config_url);
+            string data = Utility.getString(this.config_url,ref this.log);
             string new_CheckSum = Utility.CreateMD5(data);
             if (new_CheckSum == this.checksum)
             {
@@ -93,7 +87,7 @@ namespace BuildTrackerLib
             }
             else {
                 this.checksum = new_CheckSum;
-                updateCDNConfig(data);
+                this.updateCDNConfig(data);
                 return true;
             }
         }

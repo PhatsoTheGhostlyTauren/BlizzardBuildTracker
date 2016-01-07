@@ -8,23 +8,25 @@ namespace BuildTrackerLib
 {
     public class CDN
     {
+        public Log log;
         public Dictionary<string, string> _cdndata;
         public string region;
         public string path;
         public string hosts;
 
-        public CDN(string _url)
+        public CDN(string _url, ref Log _log)
         {
-            _cdndata = loadCDN(_url);
-            region = _cdndata["Name"];
-            path = _cdndata["Path"];
-            hosts = _cdndata["Hosts"];
+            this.log = _log;
+            this._cdndata = loadCDN(_url);
+            this.region = _cdndata["Name"];
+            this.path = _cdndata["Path"];
+            this.hosts = _cdndata["Hosts"];
         }
 
         private Dictionary<string,string> loadCDN(string _url)
         {
             //Download Version String from BNet
-            string cdns_string = Utility.getString(_url);
+            string cdns_string = Utility.getString(_url, ref this.log);
             //Generate Line By Line Associated Array
             List<Dictionary<string, string>> CDNS_Data = Utility.deserializeBlizzTable(cdns_string);
 
