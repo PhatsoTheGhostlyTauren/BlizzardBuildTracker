@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BlizzardBuildTracker {
@@ -24,17 +16,14 @@ namespace BlizzardBuildTracker {
         }
 
 
-        private void OnLoadingGame(int _c, int _max,string _code) {
+        private void OnLoadingGame(int _c, int _max,string _text) {
             int progress;
             string text;
-            if ((_c - 1) == _max) {
-                text = "Finished loading!";
-                progress = 100;
-            } else {
-                double progressD = ((double)(_c - 1) / _max) * 100.0;
-                progress = (int)progressD;
-                text = "Loading: '" + _code + "' (" + _c + "/" + _max + ")";
-            }
+
+            double progressD = ((double)(_c - 1) / _max) * 100.0;
+            progress = (int)progressD;
+            text = _text;
+            
 
             updateProgress(new Prog() {Text = text, Value = progress});
             if((_c - 1) == _max) {

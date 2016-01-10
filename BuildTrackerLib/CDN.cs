@@ -1,40 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
-namespace BuildTrackerLib
-{
-    public class CDN
-    {
-        public Log log;
-        public Dictionary<string, string> _cdndata;
-        public string region;
-        public string path;
-        public string hosts;
+namespace BuildTrackerLib {
+    public partial class Game  {
 
-        public CDN(string _url, ref Log _log)
-        {
-            this.log = _log;
-            this._cdndata = loadCDN(_url);
-            this.region = _cdndata["Name"];
-            this.path = _cdndata["Path"];
-            this.hosts = _cdndata["Hosts"];
+
+        public Dictionary<string, CDN> CDNS;
+        public string CDNS_CheckSum;
+
+
+
+        public class CDN {
+
+            public CDN(string _region, string _path, string _hosts) {
+                this.region = _region;
+                this.path = _path;
+                this.hosts = Regex.Split(_hosts, " ");
+            }
+
+            public string region { get; set; }
+            public string path { get; set; }
+            public string[] hosts { get; set; }
         }
 
-        private Dictionary<string,string> loadCDN(string _url)
-        {
-            //Download Version String from BNet
-            string cdns_string = Utility.getString(_url, ref this.log);
-            //Generate Line By Line Associated Array
-            List<Dictionary<string, string>> CDNS_Data = Utility.deserializeBlizzTable(cdns_string);
+        public bool loadCDNSFile() {
 
-            //Find appropriate Region
-            string[] priorities = { "us", "xx", "eu", "kr", "tw", "cn", "sg" };
-            Dictionary<string, string> cdndata = Utility.priorityFind(priorities, CDNS_Data, "Name",false); // returns a single row of the source data as an associative array
+            //Download CDNS-File String from BNet
+            string cdns_string = Utility.getString(this.cdns_url);
 
-            return cdndata;
+            if (cdns_string != null) {
+                //Update CDNS-File-CheckSum for this Game
+                this.CDNS_CheckSum = Utility.CreateMD5(cdns_string);
+
+
+                Dictionary<string, CDN> cdn_list = new Dictionary<string, CDN>();
+
+                //Generate Line By Line Associated Array
+                List<Dictionary<string, string>> CDNS_Data = Utility.deserializeBlizzTable(cdns_string);
+
+                foreach (Dictionary<string, string> _cdn in CDNS_Data) {
+                    cdn_list.Add(_cdn["Name"], new CDN(_cdn["Name"], _cdn["Path"], _cdn["Hosts"]));
+                }
+
+                this.CDNS = cdn_list;
+
+                return true;
+
+            } else {
+                return false;
+            }
         }
     }
 }

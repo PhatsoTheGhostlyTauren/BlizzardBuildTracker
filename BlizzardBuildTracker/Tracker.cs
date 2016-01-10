@@ -1,112 +1,94 @@
-﻿using System;
+﻿using BuildTrackerLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Media;
+using System.Windows.Forms;
 
 namespace BlizzardBuildTracker {
-    public class Tracker {
+    public partial class Tracker {
 
-        private string[] GameCodes;
-        public Dictionary<string, BuildTrackerLib.Game> Games;
-        private Dictionary<string, BuildTrackerLib.CDNConfig> CDNConfigs;
-        private Dictionary<string, BuildTrackerLib.BuildConfig> Builds;
+        public string[] GameCodes;
+        public Dictionary<string, Game> Games;
+        public Dictionary<string, CDNConfig> CDNConfigs;
+        public Dictionary<string, BuildConfig> Builds;
 
-        private SoundPlayer FelReaver;
+        public SoundPlayer FelReaver;
 
+        public Tracker(string[] _codes) {
 
-        public BuildTrackerLib.Log log;
-
-        public Tracker(string[] _codes, BuildTrackerLib.Log _l) {
             this.GameCodes = _codes;            
-            this.log = _l;
-            this.Games = new Dictionary<string, BuildTrackerLib.Game>();
-            this.Builds = new Dictionary<string, BuildTrackerLib.BuildConfig>();
-            this.CDNConfigs = new Dictionary<string, BuildTrackerLib.CDNConfig>();
+            
+            this.Games = new Dictionary<string, Game>();
+            this.Builds = new Dictionary<string, BuildConfig>();
+            this.CDNConfigs = new Dictionary<string, CDNConfig>();
 
             this.FelReaver = new SoundPlayer(Properties.Resources.FelReaver);
         }
 
-        public BuildTrackerLib.CDNConfig getCDNConfigByKey(string _key) {
-            return this.CDNConfigs[_key];
-        }
-        public BuildTrackerLib.BuildConfig getBuildConfigByKey(string _key) {
-            return this.Builds[_key];
-        }
-        public BuildTrackerLib.ClientVersion getClientVersionByKey(string _key) {
-            return this.Games[_key].getClientVersion();
-        }
-        
-
-        //Initiate EventHandlesr
-        public delegate void LoadingEventHandler(int _current, int _max, string _code);
-        public delegate void TrackerEventHandler(string _code);
-
-        //Register Events
-        public event LoadingEventHandler LoadingGame;
-        public event TrackerEventHandler ClientUpdate;
-        public event TrackerEventHandler CDNConfigUpdate;
-
-
-        //Alert Event-Subscribers
-        protected virtual void OnLoadingGame(int _current, int _max, string _code) {
-            if (LoadingGame != null)
-                LoadingGame(_current, _max, _code);
-        }
-
-        protected virtual void OnClientUpdate(string _code) {
-            if (ClientUpdate != null)
-                ClientUpdate(_code);
-        }
-        protected virtual void OnCDNConfigUpdate(string _code) {
-            if (CDNConfigUpdate != null)
-                CDNConfigUpdate(_code);
-        }
-
-
+        #region "Initiation"
         //Iterate over GameCodes
         public void loadGames() {
-            this.Games = new Dictionary<string, BuildTrackerLib.Game>();
-            int c = 1;
-            foreach(string code in GameCodes) {
-                OnLoadingGame(c, GameCodes.Length, code);
-                this.loadGame(code);
-                c++;
-            }
+            if (BuildTrackerLib.Utility.CheckForInternetConnection()) {
+                this.Games = new Dictionary<string, BuildTrackerLib.Game>();
+                int c = 1;
+                foreach (string code in GameCodes) {
+                    OnLoadingGame(c, GameCodes.Length, "Loading Game: " + code + " (" + c + "/" + GameCodes.Length + ")");
+                    this.loadGame(code);
+                    c++;
+                }
 
-            OnLoadingGame(c, GameCodes.Length, "all");
+                OnLoadingGame(c, GameCodes.Length, "Finished Loading!");
+            } else {
+                OnLoadingGame(2, 1, "No Internet-Connection!");
+            }
         }
 
         //Create GameObject and expand the list of builds and cdnconfigs
         private void loadGame(string _code) {
-            BuildTrackerLib.Game currentg = new BuildTrackerLib.Game(_code, ref this.log);
-            this.Games.Add(_code,currentg);
-            this.addCDNConfig(currentg.getCDNConfig());
-            this.addBuilds(currentg);
+            BuildTrackerLib.Game currentg = new BuildTrackerLib.Game(_code);
+            this.Games.Add(_code, currentg);
+            if (currentg.loadSuccess) {
+                this.addCDNConfig(currentg.CDNConfig_Key, currentg.dist_url);
+                if (CDNConfigs.ContainsKey(currentg.CDNConfig_Key)) {
+                    this.addBuilds(CDNConfigs[currentg.CDNConfig_Key].build_keys, currentg.dist_url);
+                }
+            }
         }
 
         //Add CDNConfigs to Dictionary when not already in
-        private void addCDNConfig(BuildTrackerLib.CDNConfig _cdnc) {
-            if (this.CDNConfigs.ContainsKey(_cdnc.getConfigKey())) {
+        private bool addCDNConfig(string _cdnc_key, string _disturl) {
+            if (this.CDNConfigs.ContainsKey(_cdnc_key)) {
                 //Console.WriteLine("CDNConfig already added!");
+                return false;
             } else {
-                this.CDNConfigs.Add(_cdnc.getConfigKey(), _cdnc);
+                BuildTrackerLib.CDNConfig newCDNC = new BuildTrackerLib.CDNConfig(_disturl, _cdnc_key);
+                if (newCDNC.loadSuccess) {
+                    this.CDNConfigs.Add(_cdnc_key, newCDNC);
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
         //Add BuildConfigs to Dictionary when not already in
-        private void addBuilds(BuildTrackerLib.Game _g) {
-            string[] keys = this.CDNConfigs[_g.getClientVersion().getCDNConfigKey()].getBuildKeys();
-            foreach (string buildkey in keys) {
-                if (this.Builds.ContainsKey(buildkey)) {
+        private void addBuilds(string[] _buildKeys, string _disturl) {
+
+            foreach (string _key in _buildKeys) {
+                if (this.Builds.ContainsKey(_key)) {
                     //Console.WriteLine("Build '"+ buildkey +"' already added.");
                 } else {
-                    this.Builds.Add(buildkey, new BuildTrackerLib.BuildConfig(_g.getDistUrl(), buildkey, ref this.log));
+                    BuildTrackerLib.BuildConfig newBC = new BuildTrackerLib.BuildConfig(_disturl, _key);
+                    if (newBC.loadSuccess) {
+                        this.Builds.Add(_key, newBC);
+                    }
                 }
             }
 
         }
+        #endregion
 
-
-
+        #region "Display"
         //Games List
         public class GameItem {
             public string Name { get; set; }
@@ -132,92 +114,202 @@ namespace BlizzardBuildTracker {
         }
 
         public List<BuildItem> listCDNBuilds(string _code) {
-            BuildTrackerLib.Game selectedGame = this.Games[_code];
-            BuildTrackerLib.CDNConfig cdnC = this.CDNConfigs[selectedGame.getClientVersion().getCDNConfigKey()];
-
             List<BuildItem> items = new List<BuildItem>();
 
-            foreach (string buildkey in cdnC.getBuildKeys()) {
-                items.Add(new BuildItem() { Name = this.Builds[buildkey].getBuildName(), Value = buildkey });
+            //If Game didnt succesfully load
+            if (this.Games[_code].loadSuccess == false) {
+                return items;
+            }
+
+
+            Game selectedGame = this.Games[_code];
+            CDNConfig cdnC = this.CDNConfigs[selectedGame.CDNConfig_Key];
+
+            foreach (string _key in cdnC.build_keys) {
+                if (this.Builds.ContainsKey(_key)) {
+                    items.Add(new BuildItem() { Name = this.Builds[_key].build_name, Value = _key });
+                } else {
+                    items.Add(new BuildItem() { Name = _key, Value = _key });
+                }
             }
 
             return items;
         }
 
-        //call CheckForUpdate-Routines
+        //Regions List
+        public class RegionItem {
+            public string Name { get; set; }
+            public string Value { get; set; }
+        }
 
+
+        public List<RegionItem> listRegions(string _code) {
+            List<RegionItem> items = new List<RegionItem>();
+
+            //If Game didnt succesfully load
+            if (this.Games[_code].loadSuccess == false) {
+                return items;
+            }
+
+            foreach (var version in this.Games[_code].Versions) {
+                items.Add(new RegionItem() { Name = version.Value.region, Value = version.Value.region });
+            }
+
+            return items;
+        }
+        #endregion
+
+        #region "Events"
+        //Initiate EventHandler-Delegates
+        public delegate void LoadingEventHandler(int _current, int _max, string _text);
+        public delegate void TrackerEventHandler(string _code);
+
+        //Register Events
+        public event LoadingEventHandler LoadingGame;
+        public event TrackerEventHandler VersionsUpdate;
+        public event TrackerEventHandler CDNConfigUpdate;
+
+
+        //Alert Event-Subscribers
+        protected virtual void OnLoadingGame(int _current, int _max, string _text) {
+            if (LoadingGame != null)
+                LoadingGame(_current, _max, _text);
+        }
+
+        protected virtual void OnVersionsUpdate(string _code) {
+            if (VersionsUpdate != null)
+                VersionsUpdate(_code);
+        }
+        protected virtual void OnCDNConfigUpdate(string _code) {
+            if (CDNConfigUpdate != null)
+                CDNConfigUpdate(_code);
+        }
+        #endregion
+
+        #region "Track-Routines"
         public void track() {
             //Console.WriteLine(DateTime.Now.ToString("hh:mm:ss") + ": track()");
-            Dictionary<string, BuildTrackerLib.Game> allGames = this.Games;
-            bool cvUpdated = false;
-            bool cdnConfUpdated = false;
-            string[] old_buildkeys, new_buildkeys, diff;
+            if (Utility.CheckForInternetConnection()) {
+                List<string> disabledCodes = new List<string>();
 
-
-
-            foreach (var currentG in allGames) {
-                if (currentG.Value.getTrackingStatus()) {
-                    old_buildkeys = currentG.Value.getCDNConfig().getBuildKeys();
-                    cvUpdated = currentG.Value.CheckClientVersion();
-                    cdnConfUpdated = this.CDNConfigs[currentG.Value.getClientVersion().getCDNConfigKey()].checkForUpdates();
-
-                    //Do when ClientVersion has been updated
-                    if (cvUpdated) {
-                        OnClientUpdate(currentG.Key); // Fire Events
-                        this.log.WriteSuccess("The '"+currentG.Key+"' ClientConfig has changed! Version after Update: "+currentG.Value.getClientVersion().getBuildName(), "Tracker:track()");
-                    }
-
-                    //DO when CDNConfig has been updated
-                    if (cdnConfUpdated) {
-                        new_buildkeys = currentG.Value.getCDNConfig().getBuildKeys();
-                        diff = BuildTrackerLib.Utility.getDifference(old_buildkeys, new_buildkeys);
-                        this.addBuilds(currentG.Value);
-
-                        //if diff isnt empty sort in added and removed list
-                        if (diff.Any()) {
-                            this.log.WriteSuccess("CDNConfig for Code '" + currentG.Key + "' has changed!", "Tracker:track()");
-                            List<string> added = new List<string>();
-                            List<string> removed = new List<string>();
-
-                            //Sort into added and removed List
-                            foreach (string _key in diff) {
-                                if (old_buildkeys.Contains(_key)) {
-                                    removed.Add(_key);
-                                } else {
-                                    added.Add(this.getBuildConfigByKey(_key).getBuildName());
-                                }
-                            }
-
-                            //Log all added Builds by BuildName
-                            if (added.Any()) {
-                                string addedBuilds = string.Join(", ", added.ToArray());
-                                log.WriteSuccess("New Builds: " + addedBuilds, "BlizzardBuildTrackerForm:track()");
-
-                                FelReaver.Play();
-                            }
-
-                            //Log all removed Builds by BuildHash
-                            if (removed.Any()) {
-                                string removedBuilds = string.Join(", ", removed.ToArray());
-                                log.WriteMessage("Removed Builds: " + removedBuilds, "BlizzardBuildTrackerForm:track()");
-                            }                            
-
+                foreach (var _g in this.Games) {
+                    Application.DoEvents();
+                    if (_g.Value.isTracked) {
+                        //Only Track if the Game was initiated Successful
+                        if(_g.Value.loadSuccess == false) {
+                            Log.WriteWarning("Gamecode '"+_g.Value.gamecode+"' wasnt successfully initiated! ", "Tracker:track()");
+                            _g.Value.isTracked = false;
+                            disabledCodes.Add(_g.Value.gamecode);
+                        } else {
+                            trackCDNConfig(_g.Value);
+                            trackGame(_g.Value);
                         }
+                    }
+                }
 
-                        //Clear CDNConf-Update related helper arrays
-                        Array.Clear(new_buildkeys, 0, new_buildkeys.Length);
-                        Array.Clear(diff, 0, diff.Length);
+                if (disabledCodes.Any()) {
+                    Log.WriteMessage("The following Gamecodes have been disabled for Tracking: "+String.Join(", ",disabledCodes.ToArray()), "Tracker:track()");
+                    Log.WriteMessage("Please restart the Tracker with a stable Connection to be able to be able to track any Gamecode.", "Tracker:track()");
+
+                }
+
+
+            } else {
+                Log.WriteWarning("No Internet-Connection!", "Tracker:track()");
+            }
+        }
+
+
+        public void trackCDNConfig(Game _g) {
+            CDNConfig _cdnc = this.CDNConfigs[_g.CDNConfig_Key];
+
+            //Store old Information Diff-Calculation
+            string[] old_buildkeys = _cdnc.build_keys;
+
+            Update.UpdateStatus cdnConfig_update = _cdnc.updateCDNConfig();
+
+            if (cdnConfig_update == Update.UpdateStatus.Changed) {
+                OnCDNConfigUpdate(_g.gamecode);
+                Log.WriteSuccess(_g.gamecode + " CDNConfig-File has changed!", "Tracker:track()");
+
+                string[] new_buildkeys = _cdnc.build_keys;
+
+                string[] diff = Utility.getDifference(old_buildkeys, new_buildkeys);
+
+                if (diff.Any()) {
+                    List<string> added = new List<string>();
+                    List<string> removed = new List<string>();
+
+                    //Sort into added and removed List
+                    foreach (string _key in diff) {
+                        if (old_buildkeys.Contains(_key)) {
+                            removed.Add(_key);
+                        } else {
+                            added.Add(_key);
+                        }
                     }
 
-                    //reset for Iteration
-                    cvUpdated = false;
-                    cdnConfUpdated = false;
-                    Array.Clear(old_buildkeys,0,old_buildkeys.Length);
-                    
-                } 
+                    //Log all added Builds by BuildName
+                    if (added.Any()) {
+
+                        this.addBuilds(added.ToArray(), _g.dist_url);
+
+
+                        List<string> addedBuildNames = new List<string>();
+                        foreach(string _key in added) {
+                            addedBuildNames.Add(this.Builds[_key].build_name);
+                        }
+                        Log.WriteSuccess("New Builds: " + String.Join(", ",addedBuildNames.ToArray()), "BlizzardBuildTrackerForm:track()");
+
+                        FelReaver.Play();
+                    }
+
+                    //Log all removed Builds by BuildHash
+                    if (removed.Any()) {
+                        string removedBuilds = string.Join(", ", removed.ToArray());
+                        Log.WriteMessage("Removed Builds: " + removedBuilds, "BlizzardBuildTrackerForm:track()");
+                    }
+
+                }
+            } else if (cdnConfig_update == Update.UpdateStatus.DLError) {
+                Log.WriteWarning("Couldn't download CDNConfig-File for :" + _g.gamecode, "Tracker:track()");
             }
 
         }
+
+
+        public void trackGame(Game _g) {
+            // Version and CDN File
+
+            Update.UpdateStatus cdns_update = _g.updateCDNS();
+            Update.UpdateStatus versions_update = _g.updateVersions();
+
+            //If the CDNS-File changed
+            if (cdns_update == Update.UpdateStatus.Changed) {
+                Log.WriteSuccess(_g.gamecode + " CDNS-File has changed!", "Tracker:track()");
+            } else if (cdns_update == Update.UpdateStatus.DLError) {
+                Log.WriteWarning("Couldn't download CDNS-File for Game:" + _g.gamecode, "Tracker:track()");
+            }
+            
+            //If the VersionFile changed check if the CDNConfigKey is new and add to CDNConfigs if so
+            if (versions_update == Update.UpdateStatus.Changed) {
+                OnVersionsUpdate(_g.gamecode);
+                Log.WriteSuccess(_g.gamecode + " Versions-File has changed!", "Tracker:track()");
+
+                bool new_CDNConfig = this.addCDNConfig(_g.CDNConfig_Key, _g.dist_url);
+                if (new_CDNConfig) {
+                    Log.WriteSuccess(_g.gamecode + " has been assigned to a new CDNConfig.", "Tracker:track()");
+                    this.addBuilds(this.CDNConfigs[_g.CDNConfig_Key].build_keys, _g.dist_url);
+                }
+            } else if (versions_update == Update.UpdateStatus.DLError) {
+                Log.WriteWarning("Couldn't download Version-File for Game:" + _g.gamecode, "Tracker:track()");
+            }          
+
+        }
+        #endregion
+
+
+
 
 
 

@@ -2,45 +2,50 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace BuildTrackerLib
-{
+namespace BuildTrackerLib {
     public class Utility
     {
 
-        public static string getString(string _url,ref Log _log)
-        {
-            using (WebClient client = new WebClient())
-            {
-                Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-                string no_cached_url = _url + "?fuckcache=" + unixTimestamp;
-                string data = null;
-                try {
-                    data = client.DownloadString(no_cached_url);
-                } catch(Exception E) {
 
-                    _log.WriteWarning("Error downloading data!", "Utility:getString()");
-                    _log.WriteWarning(E.Message, "Utility:getString()");
-                    //Console.WriteLine(_url + Environment.NewLine + client.ResponseHeaders);
-                }
-
-                return data;
+        public static bool CheckForInternetConnection() {
+            try {
+                Ping myPing = new Ping();
+                String host = "google.com";
+                byte[] buffer = new byte[32];
+                int timeout = 1000;
+                PingOptions pingOptions = new PingOptions();
+                PingReply reply = myPing.Send(host, timeout, buffer, pingOptions);
+                return (reply.Status == IPStatus.Success);
+            } catch (Exception) {
+                return false;
             }
         }
 
-        public static string getSize(string _url) {
-            Dictionary<string, string> Headers = GetHTTPResponseHeaders(_url);
-
-            return Headers["age"];
-        }
-
-        private static Dictionary<string, string> GetHTTPResponseHeaders(string _url)
+        public static string getString(string _url)
         {
-            throw new NotImplementedException();
+            Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            string no_cached_url = _url + "?fuckcache=" + unixTimestamp;
+
+            string myString = null;
+           
+            try {
+                using (WebClient wc = new WebClient()) {
+                    return myString = wc.DownloadString(no_cached_url);
+                }
+
+            } catch (Exception) {
+                Log.WriteWarning("Error downloading Data from URL: " + _url, "Utility:getString()");
+                return null;
+            }          
         }
+
+
+
 
         public static string CreateMD5(string input)
         {
@@ -92,32 +97,7 @@ namespace BuildTrackerLib
             return BlizzData;
         }
 
-        public static Dictionary<string, string> priorityFind(string[] _prios, List<Dictionary<string, string>> _data, string _key, bool _caseSens)
-        {
-            string value, priority;
-            foreach (string prio in _prios)
-            {
-                foreach (Dictionary<string, string> entry in _data)
-                {
-                    //if not Case Sensitive transform to lowercase
-                    if (!_caseSens) {
-                        value = entry[_key].ToLower();
-                        priority = prio.ToLower();
-                    } else {
-                        value = entry[_key];
-                        priority = prio;
-                    }
 
-                    if (value == priority)
-                    {
-                        return entry;
-                    }
-
-                }
-
-            }
-            return null;
-        }
 
         public static string getHashUrl(string _url, string _hash) {
 
@@ -125,6 +105,9 @@ namespace BuildTrackerLib
             return result;
         }
 
+        public static string ifKeyExists(Dictionary<string, string> _dict, string _key) {
+            return (_dict.ContainsKey(_key)) ? _dict[_key] : "Not found!";
+        }
 
         //Convert "dataname = a b c d ...." Results into a Dictionary
         public static Dictionary<string, string> convertBlizzData(string _data) {

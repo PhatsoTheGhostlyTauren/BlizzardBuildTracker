@@ -58,7 +58,6 @@
             this.lbCVBuildID = new System.Windows.Forms.Label();
             this.tbCVBuildID = new System.Windows.Forms.TextBox();
             this.lbCVRegion = new System.Windows.Forms.Label();
-            this.tbCVRegion = new System.Windows.Forms.TextBox();
             this.lbCVBuildName = new System.Windows.Forms.Label();
             this.tbCVBuildName = new System.Windows.Forms.TextBox();
             this.lbCVBuildConfigKey = new System.Windows.Forms.Label();
@@ -75,6 +74,7 @@
             this.lbTrackerDelay = new System.Windows.Forms.Label();
             this.TrackerTimer = new System.Windows.Forms.Timer(this.components);
             this.panelSpacer2 = new System.Windows.Forms.Panel();
+            this.cbClientRegion = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.sCCDNConfig)).BeginInit();
             this.sCCDNConfig.Panel1.SuspendLayout();
             this.sCCDNConfig.Panel2.SuspendLayout();
@@ -92,12 +92,12 @@
             this.rtbLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbLog.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.rtbLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbLog.Location = new System.Drawing.Point(5, 494);
+            this.rtbLog.Location = new System.Drawing.Point(5, 507);
             this.rtbLog.Margin = new System.Windows.Forms.Padding(0);
             this.rtbLog.Name = "rtbLog";
             this.rtbLog.ReadOnly = true;
             this.rtbLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtbLog.Size = new System.Drawing.Size(1090, 201);
+            this.rtbLog.Size = new System.Drawing.Size(1090, 188);
             this.rtbLog.TabIndex = 6;
             this.rtbLog.Text = "";
             // 
@@ -349,7 +349,7 @@
             this.sCCDNConfig.Dock = System.Windows.Forms.DockStyle.Top;
             this.sCCDNConfig.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.sCCDNConfig.IsSplitterFixed = true;
-            this.sCCDNConfig.Location = new System.Drawing.Point(5, 161);
+            this.sCCDNConfig.Location = new System.Drawing.Point(5, 174);
             this.sCCDNConfig.Margin = new System.Windows.Forms.Padding(0);
             this.sCCDNConfig.Name = "sCCDNConfig";
             // 
@@ -391,7 +391,7 @@
             // 
             this.lbCVBuildID.AutoSize = true;
             this.lbCVBuildID.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCVBuildID.Location = new System.Drawing.Point(3, 4);
+            this.lbCVBuildID.Location = new System.Drawing.Point(327, 13);
             this.lbCVBuildID.Name = "lbCVBuildID";
             this.lbCVBuildID.Size = new System.Drawing.Size(71, 22);
             this.lbCVBuildID.TabIndex = 14;
@@ -402,38 +402,27 @@
             this.tbCVBuildID.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.tbCVBuildID.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.tbCVBuildID.ForeColor = System.Drawing.Color.Black;
-            this.tbCVBuildID.Location = new System.Drawing.Point(100, 5);
+            this.tbCVBuildID.Location = new System.Drawing.Point(413, 13);
             this.tbCVBuildID.Name = "tbCVBuildID";
             this.tbCVBuildID.ReadOnly = true;
-            this.tbCVBuildID.Size = new System.Drawing.Size(171, 20);
+            this.tbCVBuildID.Size = new System.Drawing.Size(180, 20);
             this.tbCVBuildID.TabIndex = 15;
             // 
             // lbCVRegion
             // 
             this.lbCVRegion.AutoSize = true;
             this.lbCVRegion.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCVRegion.Location = new System.Drawing.Point(319, 3);
+            this.lbCVRegion.Location = new System.Drawing.Point(15, 11);
             this.lbCVRegion.Name = "lbCVRegion";
             this.lbCVRegion.Size = new System.Drawing.Size(63, 22);
             this.lbCVRegion.TabIndex = 16;
             this.lbCVRegion.Text = "Region:";
             // 
-            // tbCVRegion
-            // 
-            this.tbCVRegion.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.tbCVRegion.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.tbCVRegion.ForeColor = System.Drawing.Color.Black;
-            this.tbCVRegion.Location = new System.Drawing.Point(413, 5);
-            this.tbCVRegion.Name = "tbCVRegion";
-            this.tbCVRegion.ReadOnly = true;
-            this.tbCVRegion.Size = new System.Drawing.Size(171, 20);
-            this.tbCVRegion.TabIndex = 17;
-            // 
             // lbCVBuildName
             // 
             this.lbCVBuildName.AutoSize = true;
             this.lbCVBuildName.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCVBuildName.Location = new System.Drawing.Point(3, 35);
+            this.lbCVBuildName.Location = new System.Drawing.Point(12, 43);
             this.lbCVBuildName.Name = "lbCVBuildName";
             this.lbCVBuildName.Size = new System.Drawing.Size(97, 22);
             this.lbCVBuildName.TabIndex = 18;
@@ -444,7 +433,7 @@
             this.tbCVBuildName.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.tbCVBuildName.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.tbCVBuildName.ForeColor = System.Drawing.Color.Black;
-            this.tbCVBuildName.Location = new System.Drawing.Point(100, 36);
+            this.tbCVBuildName.Location = new System.Drawing.Point(109, 44);
             this.tbCVBuildName.Name = "tbCVBuildName";
             this.tbCVBuildName.ReadOnly = true;
             this.tbCVBuildName.Size = new System.Drawing.Size(484, 20);
@@ -454,7 +443,7 @@
             // 
             this.lbCVBuildConfigKey.AutoSize = true;
             this.lbCVBuildConfigKey.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCVBuildConfigKey.Location = new System.Drawing.Point(3, 68);
+            this.lbCVBuildConfigKey.Location = new System.Drawing.Point(12, 76);
             this.lbCVBuildConfigKey.Name = "lbCVBuildConfigKey";
             this.lbCVBuildConfigKey.Size = new System.Drawing.Size(97, 22);
             this.lbCVBuildConfigKey.TabIndex = 20;
@@ -465,7 +454,7 @@
             this.tbCVBuildConfigKey.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.tbCVBuildConfigKey.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.tbCVBuildConfigKey.ForeColor = System.Drawing.Color.Black;
-            this.tbCVBuildConfigKey.Location = new System.Drawing.Point(100, 69);
+            this.tbCVBuildConfigKey.Location = new System.Drawing.Point(109, 77);
             this.tbCVBuildConfigKey.Name = "tbCVBuildConfigKey";
             this.tbCVBuildConfigKey.ReadOnly = true;
             this.tbCVBuildConfigKey.Size = new System.Drawing.Size(484, 20);
@@ -475,7 +464,7 @@
             // 
             this.lbCVCDNConfigKey.AutoSize = true;
             this.lbCVCDNConfigKey.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCVCDNConfigKey.Location = new System.Drawing.Point(3, 101);
+            this.lbCVCDNConfigKey.Location = new System.Drawing.Point(12, 109);
             this.lbCVCDNConfigKey.Name = "lbCVCDNConfigKey";
             this.lbCVCDNConfigKey.Size = new System.Drawing.Size(92, 22);
             this.lbCVCDNConfigKey.TabIndex = 22;
@@ -486,7 +475,7 @@
             this.tbCVCDNConfigKey.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.tbCVCDNConfigKey.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.tbCVCDNConfigKey.ForeColor = System.Drawing.Color.Black;
-            this.tbCVCDNConfigKey.Location = new System.Drawing.Point(100, 102);
+            this.tbCVCDNConfigKey.Location = new System.Drawing.Point(109, 110);
             this.tbCVCDNConfigKey.Name = "tbCVCDNConfigKey";
             this.tbCVCDNConfigKey.ReadOnly = true;
             this.tbCVCDNConfigKey.Size = new System.Drawing.Size(484, 20);
@@ -509,17 +498,17 @@
             // scGameVersion.Panel2
             // 
             this.scGameVersion.Panel2.BackColor = System.Drawing.Color.Silver;
+            this.scGameVersion.Panel2.Controls.Add(this.cbClientRegion);
             this.scGameVersion.Panel2.Controls.Add(this.tbCVCDNConfigKey);
             this.scGameVersion.Panel2.Controls.Add(this.lbCVCDNConfigKey);
             this.scGameVersion.Panel2.Controls.Add(this.tbCVBuildConfigKey);
             this.scGameVersion.Panel2.Controls.Add(this.lbCVBuildConfigKey);
             this.scGameVersion.Panel2.Controls.Add(this.tbCVBuildName);
             this.scGameVersion.Panel2.Controls.Add(this.lbCVBuildName);
-            this.scGameVersion.Panel2.Controls.Add(this.tbCVRegion);
             this.scGameVersion.Panel2.Controls.Add(this.lbCVRegion);
             this.scGameVersion.Panel2.Controls.Add(this.tbCVBuildID);
             this.scGameVersion.Panel2.Controls.Add(this.lbCVBuildID);
-            this.scGameVersion.Size = new System.Drawing.Size(1090, 129);
+            this.scGameVersion.Size = new System.Drawing.Size(1090, 142);
             this.scGameVersion.SplitterDistance = 482;
             this.scGameVersion.TabIndex = 7;
             // 
@@ -530,14 +519,14 @@
             this.lbGames.IntegralHeight = false;
             this.lbGames.Location = new System.Drawing.Point(0, 0);
             this.lbGames.Name = "lbGames";
-            this.lbGames.Size = new System.Drawing.Size(482, 129);
+            this.lbGames.Size = new System.Drawing.Size(482, 142);
             this.lbGames.TabIndex = 0;
             this.lbGames.SelectedIndexChanged += new System.EventHandler(this.lbGames_SelectedIndexChanged);
             // 
             // panelSpacer1
             // 
             this.panelSpacer1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSpacer1.Location = new System.Drawing.Point(5, 134);
+            this.panelSpacer1.Location = new System.Drawing.Point(5, 147);
             this.panelSpacer1.Name = "panelSpacer1";
             this.panelSpacer1.Size = new System.Drawing.Size(1090, 27);
             this.panelSpacer1.TabIndex = 8;
@@ -551,7 +540,7 @@
             this.pnLogControl.Controls.Add(this.numUDTrackerDelay);
             this.pnLogControl.Controls.Add(this.lbTrackerDelay);
             this.pnLogControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnLogControl.Location = new System.Drawing.Point(5, 469);
+            this.pnLogControl.Location = new System.Drawing.Point(5, 482);
             this.pnLogControl.Margin = new System.Windows.Forms.Padding(0);
             this.pnLogControl.Name = "pnLogControl";
             this.pnLogControl.Size = new System.Drawing.Size(1090, 25);
@@ -628,10 +617,20 @@
             // panelSpacer2
             // 
             this.panelSpacer2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSpacer2.Location = new System.Drawing.Point(5, 433);
+            this.panelSpacer2.Location = new System.Drawing.Point(5, 446);
             this.panelSpacer2.Name = "panelSpacer2";
             this.panelSpacer2.Size = new System.Drawing.Size(1090, 36);
             this.panelSpacer2.TabIndex = 11;
+            // 
+            // cbClientRegion
+            // 
+            this.cbClientRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbClientRegion.FormattingEnabled = true;
+            this.cbClientRegion.Location = new System.Drawing.Point(109, 13);
+            this.cbClientRegion.Name = "cbClientRegion";
+            this.cbClientRegion.Size = new System.Drawing.Size(180, 21);
+            this.cbClientRegion.TabIndex = 24;
+            this.cbClientRegion.SelectedValueChanged += new System.EventHandler(this.cbClientRegion_SelectedValueChanged);
             // 
             // BlizzardBuildTrackerForm
             // 
@@ -675,7 +674,6 @@
         private System.Windows.Forms.Label lbCVBuildConfigKey;
         private System.Windows.Forms.TextBox tbCVBuildName;
         private System.Windows.Forms.Label lbCVBuildName;
-        private System.Windows.Forms.TextBox tbCVRegion;
         private System.Windows.Forms.Label lbCVRegion;
         private System.Windows.Forms.TextBox tbCVBuildID;
         private System.Windows.Forms.Label lbCVBuildID;
@@ -713,6 +711,7 @@
         private System.Windows.Forms.Panel panelSpacer2;
         private System.Windows.Forms.ListBox lbGames;
         private System.Windows.Forms.Button btnOpenTrackerChooser;
+        private System.Windows.Forms.ComboBox cbClientRegion;
     }
 }
 

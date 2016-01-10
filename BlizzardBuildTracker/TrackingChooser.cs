@@ -18,7 +18,7 @@ namespace BlizzardBuildTracker {
         }
         private void InitiateCheckedListBox() {
             foreach(var game in this.tr.Games) {
-                this.cLBGames.Items.Add(game.Key, game.Value.getTrackingStatus());
+                this.cLBGames.Items.Add(game.Key, game.Value.isTracked);
             }
         }
 
@@ -28,7 +28,7 @@ namespace BlizzardBuildTracker {
             for (int i = 0; i < this.cLBGames.Items.Count; i++) {
                 Checked = this.cLBGames.GetItemChecked(i);
                 name = this.cLBGames.Items[i].ToString();
-                this.tr.Games[name].SetTracking(Checked);
+                this.tr.Games[name].isTracked = Checked;
             }
             this.Close();
         }
